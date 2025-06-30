@@ -1,5 +1,6 @@
 from app.models.dbModels.EntityDB import EntityDB
 from sqlalchemy import Column, String, Integer, BigInteger, JSON, DateTime, ARRAY
+from sqlalchemy.orm import relationship
 
 
 class BuyListsEntity(EntityDB):
@@ -11,6 +12,8 @@ class BuyListsEntity(EntityDB):
     datetime_create = Column(DateTime(timezone=True), nullable=False)
     total_price = Column(Integer, nullable=False)
     total_discount = Column(Integer, nullable=True)
+
+    user_associations = relationship("UserBuyListsEntity", back_populates="buy_list")
 
     def __init__(
         self, id=None, type=None, products=None, datetime_create=None, total_price=None, total_discount=None

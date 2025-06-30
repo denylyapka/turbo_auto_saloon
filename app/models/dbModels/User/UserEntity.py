@@ -1,6 +1,6 @@
 from app.models.dbModels.EntityDB import EntityDB
 from sqlalchemy import Column, String, Integer, BigInteger, JSON, DateTime, ARRAY
-
+from sqlalchemy.orm import relationship
 
 class UserEntity(EntityDB):
     __tablename__ = 'users'
@@ -13,6 +13,8 @@ class UserEntity(EntityDB):
     dateborn = Column(DateTime, nullable=True)
     email = Column(String(100), nullable=False)
     hashed_password = Column(String, nullable=False)
+
+    buy_lists = relationship("UserBuyListsEntity", back_populates="user")
 
     def __init__(
             self, id=None, name=None, surname=None,
@@ -27,7 +29,6 @@ class UserEntity(EntityDB):
         self.dateborn = dateborn
         self.email = email
         self.hashed_password = hashed_password
-
 
     def to_dict(self) -> dict:
         return {
