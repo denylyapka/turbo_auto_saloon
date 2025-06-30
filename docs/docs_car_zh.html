@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汽车数据库文档</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            font-weight: normal;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, monospace;
+        }
+        .json-example {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <h1>汽车数据库 <code>cars</code> 文档</h1>
+    
+    <h2>概述</h2>
+    <p><code>cars</code> 数据库用于存储车辆信息，包含详细的汽车技术规格参数。</p>
+    
+    <h2>表结构</h2>
+    
+    <h3>主要字段</h3>
+    <table>
+        <tr>
+            <th>字段</th>
+            <th>描述</th>
+            <th>约束条件/格式</th>
+        </tr>
+        <tr>
+            <td><code>vin_id</code></td>
+            <td>车辆识别代号</td>
+            <td>必须符合VIN标准</td>
+        </tr>
+        <tr>
+            <td><code>country_manufacturer</code></td>
+            <td>生产国家</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>车辆描述</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>brand</code></td>
+            <td>汽车品牌</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>model</code></td>
+            <td>车型</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>year_of_release</code></td>
+            <td>生产年份</td>
+            <td>YYYY格式</td>
+        </tr>
+        <tr>
+            <td><code>photos</code></td>
+            <td>照片链接数组</td>
+            <td>至少需要10张照片</td>
+        </tr>
+        <tr>
+            <td><code>mileage</code></td>
+            <td>行驶里程</td>
+            <td>单位：公里</td>
+        </tr>
+        <tr>
+            <td><code>gear_box</code></td>
+            <td>变速箱类型</td>
+            <td>手动、自动、半自动、无级变速</td>
+        </tr>
+        <tr>
+            <td><code>drive</code></td>
+            <td>驱动方式</td>
+            <td>前驱、后驱、四驱</td>
+        </tr>
+        <tr>
+            <td><code>engine</code></td>
+            <td>发动机类型</td>
+            <td>汽油、柴油、混动、电动</td>
+        </tr>
+        <tr>
+            <td><code>volume_engine</code></td>
+            <td>发动机排量</td>
+            <td>单位：升</td>
+        </tr>
+        <tr>
+            <td><code>expenditure</code></td>
+            <td>油耗</td>
+            <td>升/百公里</td>
+        </tr>
+        <tr>
+            <td><code>overclocking</code></td>
+            <td>0-100km/h加速</td>
+            <td>单位：秒</td>
+        </tr>
+        <tr>
+            <td><code>condition</code></td>
+            <td>车况</td>
+            <td>新车、二手车、事故车</td>
+        </tr>
+        <tr>
+            <td><code>body_type</code></td>
+            <td>车身类型</td>
+            <td>轿车、掀背车、SUV、跑车等</td>
+        </tr>
+        <tr>
+            <td><code>quantity_places</code></td>
+            <td>座位数</td>
+            <td>1-16个</td>
+        </tr>
+        <tr>
+            <td><code>volume_trunk</code></td>
+            <td>行李箱容积</td>
+            <td>单位：升</td>
+        </tr>
+        <tr>
+            <td><code>clearance</code></td>
+            <td>离地间隙</td>
+            <td>单位：毫米</td>
+        </tr>
+        <tr>
+            <td><code>color</code></td>
+            <td>颜色</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>conditioner</code></td>
+            <td>空调系统</td>
+            <td>是/否</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_material</code></td>
+            <td>方向盘材质</td>
+            <td>真皮、塑料、翻毛皮、木质</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_side</code></td>
+            <td>方向盘位置</td>
+            <td>左舵、右舵</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_type_of_amplifier</code></td>
+            <td>转向助力类型</td>
+            <td>液压、电动、电液、无助力</td>
+        </tr>
+        <tr>
+            <td><code>climate</code></td>
+            <td>空调系统</td>
+            <td>手动空调、单区自动、多区自动</td>
+        </tr>
+        <tr>
+            <td><code>wheel_diameter</code></td>
+            <td>轮毂直径</td>
+            <td>单位：英寸</td>
+        </tr>
+        <tr>
+            <td><code>salon_material</code></td>
+            <td>内饰材质</td>
+            <td>真皮、织物、翻毛皮、混合</td>
+        </tr>
+        <tr>
+            <td><code>salon_color</code></td>
+            <td>内饰颜色</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>heated</code></td>
+            <td>加热功能</td>
+            <td>前排座椅、后排座椅、后视镜、后窗、方向盘</td>
+        </tr>
+        <tr>
+            <td><code>electric</code></td>
+            <td>电动功能</td>
+            <td>前排座椅、后排座椅、后视镜、方向盘调节、前窗、后窗</td>
+        </tr>
+        <tr>
+            <td><code>memory</code></td>
+            <td>记忆功能</td>
+            <td>驾驶座、后视镜、后排座椅、方向盘</td>
+        </tr>
+        <tr>
+            <td><code>head_lights_type</code></td>
+            <td>大灯类型</td>
+            <td>卤素、氙气、LED、激光</td>
+        </tr>
+        <tr>
+            <td><code>head_lights_washers</code></td>
+            <td>大灯清洗</td>
+            <td>是/否</td>
+        </tr>
+        <tr>
+            <td><code>multumedia</code></td>
+            <td>多媒体系统</td>
+            <td>CD、MP3、USB、蓝牙、收音机、电视、显示屏、AUX、GPS</td>
+        </tr>
+        <tr>
+            <td><code>quantity_speaker</code></td>
+            <td>扬声器数量</td>
+            <td>0-30个</td>
+        </tr>
+        <tr>
+            <td><code>subwoofer</code></td>
+            <td>低音炮</td>
+            <td>是/否</td>
+        </tr>
+    </table>
+    
+    <h3>有效数据示例</h3>
+    <div class="json-example">
+        <pre>{
+  "vin_id": "LSVHJ133022217777",
+  "country_manufacturer": "中国",
+  "description": "车况良好，无事故",
+  "brand": "大众",
+  "model": "帕萨特",
+  "year_of_release": 2021,
+  "photos": [
+    "https://example.com/photo1.jpg",
+    "https://example.com/photo2.jpg",
+    "https://example.com/photo3.jpg",
+    "https://example.com/photo4.jpg",
+    "https://example.com/photo5.jpg",
+    "https://example.com/photo6.jpg",
+    "https://example.com/photo7.jpg",
+    "https://example.com/photo8.jpg",
+    "https://example.com/photo9.jpg",
+    "https://example.com/photo10.jpg"
+  ],
+  "mileage": 35000,
+  "gear_box": "自动",
+  "drive": "前驱",
+  "engine": "汽油",
+  "volume_engine": 2.0,
+  "expenditure": 6.8,
+  "overclocking": 8.4,
+  "condition": "二手车",
+  "body_type": "轿车",
+  "quantity_places": 5,
+  "volume_trunk": 521,
+  "clearance": 145,
+  "color": "黑色",
+  "conditioner": true,
+  "steering_control_material": "真皮",
+  "steering_control_side": "左舵",
+  "steering_control_type_of_amplifier": "电动",
+  "climate": "双区自动",
+  "wheel_diameter": 18,
+  "salon_material": "真皮",
+  "salon_color": "米色",
+  "heated": "前排座椅,后视镜",
+  "electric": "前排座椅,前窗",
+  "head_lights_type": "LED",
+  "head_lights_washers": true,
+  "multumedia": "蓝牙,USB,GPS",
+  "quantity_speaker": 8,
+  "subwoofer": false,
+  "memory": "驾驶座,后视镜"
+}</pre>
+    </div>
+</body>
+</html>

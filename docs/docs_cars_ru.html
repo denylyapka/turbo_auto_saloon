@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация базы данных Cars</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .json-example {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Документация по базе данных <code>cars</code></h1>
+    
+    <h2>Общая информация</h2>
+    <p>База данных <code>cars</code> предназначена для хранения информации о транспортных средствах. Таблица содержит подробные технические характеристики автомобилей.</p>
+    
+    <h2>Структура таблицы</h2>
+    
+    <h3>Основные поля</h3>
+    <table>
+        <tr>
+            <th>Поле</th>
+            <th>Описание</th>
+            <th>Ограничения/Форматы</th>
+        </tr>
+        <tr>
+            <td><code>vin_id</code></td>
+            <td>VIN-номер транспортного средства</td>
+            <td>Должен соответствовать стандарту VIN</td>
+        </tr>
+        <tr>
+            <td><code>country_manufacturer</code></td>
+            <td>Страна производителя</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>Описание транспортного средства</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>brand</code></td>
+            <td>Марка автомобиля</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>model</code></td>
+            <td>Модель автомобиля</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>year_of_release</code></td>
+            <td>Год выпуска</td>
+            <td>Год в формате YYYY</td>
+        </tr>
+        <tr>
+            <td><code>photos</code></td>
+            <td>Массив ссылок на фотографии</td>
+            <td>Минимум 10 фото</td>
+        </tr>
+        <tr>
+            <td><code>mileage</code></td>
+            <td>Пробег</td>
+            <td>В километрах</td>
+        </tr>
+        <tr>
+            <td><code>gear_box</code></td>
+            <td>Тип коробки передач</td>
+            <td>manual, automatic, robot, variator</td>
+        </tr>
+        <tr>
+            <td><code>drive</code></td>
+            <td>Тип привода</td>
+            <td>front, rear, full</td>
+        </tr>
+        <tr>
+            <td><code>engine</code></td>
+            <td>Тип двигателя</td>
+            <td>gas, diesel, hybrid, electric</td>
+        </tr>
+        <tr>
+            <td><code>volume_engine</code></td>
+            <td>Объем двигателя</td>
+            <td>В литрах</td>
+        </tr>
+        <tr>
+            <td><code>expenditure</code></td>
+            <td>Расход топлива</td>
+            <td>л/100км</td>
+        </tr>
+        <tr>
+            <td><code>overclocking</code></td>
+            <td>Разгон 0-100 км/ч</td>
+            <td>В секундах</td>
+        </tr>
+        <tr>
+            <td><code>condition</code></td>
+            <td>Состояние</td>
+            <td>new, used, emergency</td>
+        </tr>
+        <tr>
+            <td><code>body_type</code></td>
+            <td>Тип кузова</td>
+            <td>sedan, hatchback, SUV, coupe и др.</td>
+        </tr>
+        <tr>
+            <td><code>quantity_places</code></td>
+            <td>Количество мест</td>
+            <td>1-16</td>
+        </tr>
+        <tr>
+            <td><code>volume_trunk</code></td>
+            <td>Объем багажника</td>
+            <td>В литрах</td>
+        </tr>
+        <tr>
+            <td><code>clearance</code></td>
+            <td>Дорожный просвет</td>
+            <td>В миллиметрах</td>
+        </tr>
+        <tr>
+            <td><code>color</code></td>
+            <td>Цвет</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>conditioner</code></td>
+            <td>Наличие кондиционера</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_material</code></td>
+            <td>Материал руля</td>
+            <td>leather, plastic, alcantara, wood</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_side</code></td>
+            <td>Расположение руля</td>
+            <td>left, right</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_type_of_amplifier</code></td>
+            <td>Тип усилителя руля</td>
+            <td>hydraulic, electric, electrohydraulic, none</td>
+        </tr>
+        <tr>
+            <td><code>climate</code></td>
+            <td>Система климат-контроля</td>
+            <td>climate_conditioner, climate_control_single_zone, climate_control_multi_zone</td>
+        </tr>
+        <tr>
+            <td><code>wheel_diameter</code></td>
+            <td>Диаметр колес</td>
+            <td>В дюймах</td>
+        </tr>
+        <tr>
+            <td><code>salon_material</code></td>
+            <td>Материал салона</td>
+            <td>leather, fabric, alcantara, combined</td>
+        </tr>
+        <tr>
+            <td><code>salon_color</code></td>
+            <td>Цвет салона</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>heated</code></td>
+            <td>Обогрев элементов</td>
+            <td>heated_front_seats, heated_back_seats, heated_mirrors, heated_back_window, heated_steering_control</td>
+        </tr>
+        <tr>
+            <td><code>electric</code></td>
+            <td>Электропривод элементов</td>
+            <td>electric_drive_front_seats, electric_drive_back_seats, electric_drive_mirrors, electric_drive_steering_control_speaker, electric_upper_front_windows, electric_upper_back_windows</td>
+        </tr>
+        <tr>
+            <td><code>memory</code></td>
+            <td>Память настроек</td>
+            <td>memory_seat_driver, memory_mirrors, memory_back_seats, memory_wheel</td>
+        </tr>
+        <tr>
+            <td><code>head_lights_type</code></td>
+            <td>Тип фар</td>
+            <td>halogen, xenon, led, laser</td>
+        </tr>
+        <tr>
+            <td><code>head_lights_washers</code></td>
+            <td>Наличие омывателей фар</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td><code>multumedia</code></td>
+            <td>Мультимедийные системы</td>
+            <td>multimedia_cd, multimedia_mp3, multimedia_usb, multimedia_bluetooth, multimedia_radio, multimedia_tv, multimedia_display, multimedia_aux, multimedia_gps</td>
+        </tr>
+        <tr>
+            <td><code>quantity_speaker</code></td>
+            <td>Количество динамиков</td>
+            <td>0-30</td>
+        </tr>
+        <tr>
+            <td><code>subwoofer</code></td>
+            <td>Наличие сабвуфера</td>
+            <td>true/false</td>
+        </tr>
+    </table>
+    
+    <h3>Пример валидных данных</h3>
+    <div class="json-example">
+        <pre>{
+  "vin_id": "XTA21099765432101",
+  "country_manufacturer": "Russia",
+  "description": "Отличное состояние, один владелец",
+  "brand": "Lada",
+  "model": "Vesta",
+  "year_of_release": 2020,
+  "photos": [
+    "https://example.com/photo1.jpg",
+    "https://example.com/photo2.jpg",
+    "https://example.com/photo3.jpg",
+    "https://example.com/photo4.jpg",
+    "https://example.com/photo5.jpg",
+    "https://example.com/photo6.jpg",
+    "https://example.com/photo7.jpg",
+    "https://example.com/photo8.jpg",
+    "https://example.com/photo9.jpg",
+    "https://example.com/photo10.jpg"
+  ],
+  "mileage": 45000,
+  "gear_box": "manual",
+  "drive": "front",
+  "engine": "gas",
+  "volume_engine": 1.6,
+  "expenditure": 7.2,
+  "overclocking": 11.8,
+  "condition": "used",
+  "body_type": "sedan",
+  "quantity_places": 5,
+  "volume_trunk": 480,
+  "clearance": 178,
+  "color": "white",
+  "conditioner": true,
+  "steering_control_material": "leather",
+  "steering_control_side": "left",
+  "steering_control_type_of_amplifier": "electric",
+  "climate": "climate_control_single_zone",
+  "wheel_diameter": 16,
+  "salon_material": "fabric",
+  "salon_color": "black",
+  "heated": "heated_front_seats,heated_mirrors",
+  "electric": "electric_drive_front_seats,electric_upper_front_windows",
+  "head_lights_type": "halogen",
+  "head_lights_washers": true,
+  "multumedia": "multimedia_bluetooth,multimedia_usb",
+  "quantity_speaker": 6,
+  "subwoofer": false,
+  "memory": "memory_seat_driver,memory_mirrors"
+}</pre>
+    </div>
+</body>
+</html>

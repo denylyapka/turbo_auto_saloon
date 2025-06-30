@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars Database Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .json-example {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>cars</code> database</h1>
+    
+    <h2>General Information</h2>
+    <p>The <code>cars</code> database is designed to store vehicle information. The table contains detailed technical specifications of cars.</p>
+    
+    <h2>Table Structure</h2>
+    
+    <h3>Main Fields</h3>
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Description</th>
+            <th>Constraints/Formats</th>
+        </tr>
+        <tr>
+            <td><code>vin_id</code></td>
+            <td>Vehicle VIN number</td>
+            <td>Must comply with VIN standard</td>
+        </tr>
+        <tr>
+            <td><code>country_manufacturer</code></td>
+            <td>Manufacturer country</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>description</code></td>
+            <td>Vehicle description</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>brand</code></td>
+            <td>Car brand</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>model</code></td>
+            <td>Car model</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>year_of_release</code></td>
+            <td>Manufacture year</td>
+            <td>YYYY format</td>
+        </tr>
+        <tr>
+            <td><code>photos</code></td>
+            <td>Array of photo links</td>
+            <td>Minimum 10 photos</td>
+        </tr>
+        <tr>
+            <td><code>mileage</code></td>
+            <td>Mileage</td>
+            <td>In kilometers</td>
+        </tr>
+        <tr>
+            <td><code>gear_box</code></td>
+            <td>Gearbox type</td>
+            <td>manual, automatic, robot, variator</td>
+        </tr>
+        <tr>
+            <td><code>drive</code></td>
+            <td>Drive type</td>
+            <td>front, rear, full</td>
+        </tr>
+        <tr>
+            <td><code>engine</code></td>
+            <td>Engine type</td>
+            <td>gas, diesel, hybrid, electric</td>
+        </tr>
+        <tr>
+            <td><code>volume_engine</code></td>
+            <td>Engine volume</td>
+            <td>In liters</td>
+        </tr>
+        <tr>
+            <td><code>expenditure</code></td>
+            <td>Fuel consumption</td>
+            <td>l/100km</td>
+        </tr>
+        <tr>
+            <td><code>overclocking</code></td>
+            <td>Acceleration 0-100 km/h</td>
+            <td>In seconds</td>
+        </tr>
+        <tr>
+            <td><code>condition</code></td>
+            <td>Vehicle condition</td>
+            <td>new, used, emergency</td>
+        </tr>
+        <tr>
+            <td><code>body_type</code></td>
+            <td>Body type</td>
+            <td>sedan, hatchback, SUV, coupe etc.</td>
+        </tr>
+        <tr>
+            <td><code>quantity_places</code></td>
+            <td>Number of seats</td>
+            <td>1-16</td>
+        </tr>
+        <tr>
+            <td><code>volume_trunk</code></td>
+            <td>Trunk volume</td>
+            <td>In liters</td>
+        </tr>
+        <tr>
+            <td><code>clearance</code></td>
+            <td>Ground clearance</td>
+            <td>In millimeters</td>
+        </tr>
+        <tr>
+            <td><code>color</code></td>
+            <td>Color</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>conditioner</code></td>
+            <td>Air conditioning</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_material</code></td>
+            <td>Steering wheel material</td>
+            <td>leather, plastic, alcantara, wood</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_side</code></td>
+            <td>Steering wheel position</td>
+            <td>left, right</td>
+        </tr>
+        <tr>
+            <td><code>steering_control_type_of_amplifier</code></td>
+            <td>Power steering type</td>
+            <td>hydraulic, electric, electrohydraulic, none</td>
+        </tr>
+        <tr>
+            <td><code>climate</code></td>
+            <td>Climate control system</td>
+            <td>climate_conditioner, climate_control_single_zone, climate_control_multi_zone</td>
+        </tr>
+        <tr>
+            <td><code>wheel_diameter</code></td>
+            <td>Wheel diameter</td>
+            <td>In inches</td>
+        </tr>
+        <tr>
+            <td><code>salon_material</code></td>
+            <td>Interior material</td>
+            <td>leather, fabric, alcantara, combined</td>
+        </tr>
+        <tr>
+            <td><code>salon_color</code></td>
+            <td>Interior color</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td><code>heated</code></td>
+            <td>Heated elements</td>
+            <td>heated_front_seats, heated_back_seats, heated_mirrors, heated_back_window, heated_steering_control</td>
+        </tr>
+        <tr>
+            <td><code>electric</code></td>
+            <td>Electric drive elements</td>
+            <td>electric_drive_front_seats, electric_drive_back_seats, electric_drive_mirrors, electric_drive_steering_control_speaker, electric_upper_front_windows, electric_upper_back_windows</td>
+        </tr>
+        <tr>
+            <td><code>memory</code></td>
+            <td>Memory settings</td>
+            <td>memory_seat_driver, memory_mirrors, memory_back_seats, memory_wheel</td>
+        </tr>
+        <tr>
+            <td><code>head_lights_type</code></td>
+            <td>Headlights type</td>
+            <td>halogen, xenon, led, laser</td>
+        </tr>
+        <tr>
+            <td><code>head_lights_washers</code></td>
+            <td>Headlight washers</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td><code>multumedia</code></td>
+            <td>Multimedia systems</td>
+            <td>multimedia_cd, multimedia_mp3, multimedia_usb, multimedia_bluetooth, multimedia_radio, multimedia_tv, multimedia_display, multimedia_aux, multimedia_gps</td>
+        </tr>
+        <tr>
+            <td><code>quantity_speaker</code></td>
+            <td>Number of speakers</td>
+            <td>0-30</td>
+        </tr>
+        <tr>
+            <td><code>subwoofer</code></td>
+            <td>Subwoofer presence</td>
+            <td>true/false</td>
+        </tr>
+    </table>
+    
+    <h3>Valid Data Example</h3>
+    <div class="json-example">
+        <pre>{
+  "vin_id": "XTA21099765432101",
+  "country_manufacturer": "Germany",
+  "description": "Excellent condition, one owner",
+  "brand": "BMW",
+  "model": "X5",
+  "year_of_release": 2020,
+  "photos": [
+    "https://example.com/photo1.jpg",
+    "https://example.com/photo2.jpg",
+    "https://example.com/photo3.jpg",
+    "https://example.com/photo4.jpg",
+    "https://example.com/photo5.jpg",
+    "https://example.com/photo6.jpg",
+    "https://example.com/photo7.jpg",
+    "https://example.com/photo8.jpg",
+    "https://example.com/photo9.jpg",
+    "https://example.com/photo10.jpg"
+  ],
+  "mileage": 45000,
+  "gear_box": "automatic",
+  "drive": "full",
+  "engine": "gas",
+  "volume_engine": 3.0,
+  "expenditure": 9.2,
+  "overclocking": 6.5,
+  "condition": "used",
+  "body_type": "SUV",
+  "quantity_places": 5,
+  "volume_trunk": 650,
+  "clearance": 210,
+  "color": "black",
+  "conditioner": true,
+  "steering_control_material": "leather",
+  "steering_control_side": "left",
+  "steering_control_type_of_amplifier": "electric",
+  "climate": "climate_control_multi_zone",
+  "wheel_diameter": 20,
+  "salon_material": "leather",
+  "salon_color": "black",
+  "heated": "heated_front_seats,heated_mirrors",
+  "electric": "electric_drive_front_seats,electric_upper_front_windows",
+  "head_lights_type": "led",
+  "head_lights_washers": true,
+  "multumedia": "multimedia_bluetooth,multimedia_usb,multimedia_gps",
+  "quantity_speaker": 12,
+  "subwoofer": true,
+  "memory": "memory_seat_driver,memory_mirrors"
+}</pre>
+    </div>
+</body>
+</html>
