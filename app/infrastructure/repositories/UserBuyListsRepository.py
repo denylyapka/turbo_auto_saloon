@@ -2,9 +2,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from typing import List, Optional
 from app.models.dbModels.UserBuyLists.UserBuyListsEntity import UserBuyListsEntity
-from app.interfaces.repositories.UserBuyLists.IUserBuyListsRepository import IUserBuyListsRepository
+from app.models.dbModels.UserBuyLists.IUserBuyListsRepository import IUserBuyListsRepository
 
-class UserBuyListsRepository(IBuyListsRepository):
+class UserBuyListsRepository(IUserBuyListsRepository):
     def __init__(self, session: AsyncSession):
         self.session = session
 
