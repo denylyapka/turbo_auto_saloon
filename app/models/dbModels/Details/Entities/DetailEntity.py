@@ -30,6 +30,7 @@ class DetailEntity(EntityDB):
     cross_references = relationship("CrossReference", back_populates="details")
     compatibilities = relationship("Compatibility", back_populates="details")
     reviews = relationship("Review", back_populates="details")
+    discounts = relationship("DiscountEntity", back_populates="detail")
 
     def __init__(
             self, id=None, name=None, part_number=None, oem_number=None, brand_id=None, category_id=None, price=None,

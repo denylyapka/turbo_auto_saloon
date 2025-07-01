@@ -32,6 +32,7 @@ class CarEntity(EntityDB):
     chassis = relationship("CarChassis", back_populates="car")
     dimensions = relationship("CarDimensions", back_populates="car")
     interior = relationship("CarInterior", back_populates="car")
+    discounts = relationship("DiscountEntity", back_populates="car")
 
     def __init__(
             self, id=None, vin_id=None, country_manufacturer=None, description=None, brand=None,

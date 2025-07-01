@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 from app.models.dbModels.Cars.Entities.CarChassis import CarChassis
 
 class ICarChassisRepository:
