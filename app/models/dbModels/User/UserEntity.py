@@ -14,7 +14,8 @@ class UserEntity(EntityDB):
     email = Column(String(100), nullable=False)
     hashed_password = Column(String, nullable=False)
 
-    buy_lists = relationship("UserBuyListsEntity", back_populates="user")
+    buy_lists = relationship("UserBuyListsEntity", back_populates="users")
+    reviews = relationship("ReviewEntity", back_populates="users")
 
     def __init__(
             self, id=None, name=None, surname=None,
