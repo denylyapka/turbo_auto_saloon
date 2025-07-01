@@ -31,6 +31,7 @@ class DetailEntity(EntityDB):
     compatibilities = relationship("Compatibility", back_populates="details")
     reviews = relationship("Review", back_populates="details")
     discounts = relationship("DiscountEntity", back_populates="detail")
+    watch_lists = relationship("WatchListsEntity", back_populates="detail")
 
     def __init__(
             self, id=None, name=None, part_number=None, oem_number=None, brand_id=None, category_id=None, price=None,

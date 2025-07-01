@@ -16,6 +16,7 @@ class UserEntity(EntityDB):
 
     buy_lists = relationship("UserBuyListsEntity", back_populates="users")
     reviews = relationship("ReviewEntity", back_populates="users")
+    buy_lists = relationship("UserBuyListsEntity", back_populates="users")
 
     def __init__(
             self, id=None, name=None, surname=None,
