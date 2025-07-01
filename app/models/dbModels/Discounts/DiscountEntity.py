@@ -7,8 +7,8 @@ class DiscountEntity(EntityDB):
     __tablename__ = 'discounts'
 
     id = Column(Integer, primary_key=True)
-    car_id = Column(Integer, ForeignKey('cars.id'), nullable=False)
-    detail_id = Column(Integer, ForeignKey('details.id'), nullable=False)
+    car_id = Column(Integer, ForeignKey('cars.id'), nullable=True)
+    detail_id = Column(Integer, ForeignKey('details.id'), nullable=True)
 
     name_discount = Column(String(100), nullable=True)
     description = Column(String(255), nullable=True)
