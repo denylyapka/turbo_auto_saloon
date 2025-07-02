@@ -10,23 +10,23 @@ class WatchListRepository(IWatchListRepository):
     def __init__(self, session: AsyncSession):
         self.session = session
     
-    async def create(self, discount: WatchListEntity) -> WatchListEntity:
-        self.session.add(discount)
+    async def create(self, watch_list: WatchListEntity) -> WatchListEntity:
+        self.session.add(watch_list)
         await self.session.flush()
-        return discount
+        return watch_list
     
-    async def get_by_id(self, discount_id: int) -> Optional[WatchListEntity]:
-        query = select(WatchListEntity).where(WatchListEntity.id == discount_id)
+    async def get_by_id(self, watch_list_id: int) -> Optional[WatchListEntity]:
+        query = select(WatchListEntity).where(WatchListEntity.id == watch_list_id)
         result = await self.session.execute(query)
-        discount = result.scalars().first()
-        return discount.to_dict()
+        watch_list = result.scalars().first()
+        return watch_list.to_dict() if watch_list else None
     
-    async def delete(self, discount_id: int) -> bool:
-        query = select(WatchListEntity).where(WatchListEntity.id == discount_id)
+    async def delete(self, watch_list_id: int) -> bool:
+        query = select(WatchListEntity).where(WatchListEntity.id == watch_list_id)
         result = await self.session.execute(query)
-        discount = result.scalars().first()
-        if discount:
-            self.session.delete(discount)
+        watch_list = result.scalars().first()
+        if watch_list:
+            self.session.delete(watch_list)
             await self.session.commit()
             return True
         return False
@@ -34,11 +34,11 @@ class WatchListRepository(IWatchListRepository):
     async def get_all(self) -> List[WatchListEntity]:
         query = select(WatchListEntity)
         result = await self.session.execute(query)
-        discounts = result.scalars().all()
-        return [discount.to_dict() for discount in discounts] if discounts else []
+        watch_lists = result.scalars().all()
+        return [watch_list.to_dict() for watch_list in watch_lists] if watch_lists else []
     
     async def get_all_by_user_id(self, user_id: int) -> List[WatchListEntity]:
         query = select(WatchListEntity).where(WatchListEntity.user_id == user_id)
         result = await self.session.execute(query)
-        discounts = result.scalars().all()
-        return [discount.to_dict() for discount in discounts] if discounts else []
+        watch_lists = result.scalars().all()
+        return [watch_list.to_dict() for watch_list in watch_lists] if watch_lists else []
