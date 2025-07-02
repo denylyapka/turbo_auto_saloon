@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.models.dbModels.User.UserEntity import UserEntity as User
@@ -6,9 +7,12 @@ from datetime import datetime
 
 from app.models.dbModels.User.IUserRepository import IUserRepository
 
+from app.api.routes.User.utils.hash_password import hashing_password
+
 
 class UserRepository(IUserRepository):
     def __init__(self, session: AsyncSession):
+        
         self.session = session
 
     async def create(self, user: User) -> User:
@@ -28,19 +32,37 @@ class UserRepository(IUserRepository):
         """Получить пользователя по email"""
         query = select(User).where(User.email == email)
         result = await self.session.execute(query)
-        return result.scalar_one_or_none()
+        users = result.scalars().all()
+        return [user.to_dict() for user in users] if users else []
 
     async def get_all(self) -> List[User]:
         """Получить всех пользователей"""
         query = select(User)
         result = await self.session.execute(query)
-        return result.scalars().all()
+        users = result.scalars().all()
+        return [user.to_dict() for user in users] if users else []
 
-    async def update(self, user: User) -> User:
+    async def update(self, id: int, user: User) -> User:
         """Обновить данные пользователя"""
+        # 1. Получаем пользователя из базы
+        db_user = await self.session.get(User, id)
+        if not db_user:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        # 2. Обновляем только изменяемые поля
+        update_data = user.dict(exclude_unset=True)
+        for field, value in update_data.items():
+            if field == 'password' and value:  # Особый случай для пароля
+                setattr(db_user, 'hashed_password', hashing_password(value))
+            elif hasattr(db_user, field):  # Обновляем только существующие атрибуты
+                setattr(db_user, field, value)
+        
+        # 3. Сохраняем изменения
+        self.session.add(db_user)
         await self.session.commit()
-        await self.session.refresh(user)
-        return user
+        await self.session.refresh(db_user)
+        
+        return db_user
 
     async def delete(self, user_id: int) -> bool:
         """Удалить пользователя по ID"""
@@ -82,10 +104,12 @@ class UserRepository(IUserRepository):
                 query = query.where(condition(value))
 
         result = await self.session.execute(query)
-        return result.scalars().all()
+        users = result.scalars().all()
+        return [user.to_dict() for user in users] if users else []
 
-    async def get_hashed_password(self, username: str) -> Optional[str]:
-        """Получить хэшированный пароль по имени пользователя"""
-        query = select(User.hashed_password).where(User.name == username)
+    async def get_hashed_password_by_email(self, email: str) -> Optional[str]:
+        """Получить хэшированный пароль по email"""
+        query = select(User.hashed_password).where(User.email == email)
         result = await self.session.execute(query)
-        return result.scalar_one_or_none()
+        user = result.scalars().first()
+        return user if user else None

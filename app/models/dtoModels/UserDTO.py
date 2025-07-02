@@ -1,6 +1,9 @@
-from datetime import datetime
+from datetime import datetime, date
 from pydantic import BaseModel, EmailStr
 from typing import Optional
+
+from app.models.dtoModels.Entity import Entity
+
 
 class UserBase(BaseModel):
     """Базовая схема пользователя (без идентификатора и секретных данных)"""
@@ -29,3 +32,21 @@ class UserResponse(UserDTO):
 class UserWithSecret(UserDTO):
     """Схема с секретными данными (только для внутреннего использования)"""
     hashed_password: str
+
+
+class UserDTO(Entity):
+    name: str
+    surname: Optional[str] = None
+    patronymic: Optional[str] = None
+    dateborn: Optional[date] = None
+    email: EmailStr  # автоматическая валидация email
+    password: str  # открытый пароль (не хешированный!)
+
+class UserEditDTO(Entity):
+    id: int
+    name: str
+    surname: Optional[str] = None
+    patronymic: Optional[str] = None
+    dateborn: Optional[date] = None
+    email: EmailStr  # автоматическая валидация email
+    password: str  # открытый пароль (не хешированный!)

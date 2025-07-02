@@ -21,12 +21,16 @@ class IUserRepository:
         """Получить всех пользователей"""
         raise NotImplementedError("Метод не вызван!")
 
-    async def update(self, user: UserEntity) -> UserEntity:
+    async def update(self, id: int, user: UserEntity) -> UserEntity:
         """Обновить данные пользователя"""
         raise NotImplementedError("Метод не вызван!")
 
     async def delete(self, user_id: int) -> bool:
         """Удалить пользователя по ID"""
+        raise NotImplementedError("Метод не вызван!")
+    
+    async def get_hashed_password_by_email(self, email: str) -> Optional[str]:
+        """Получить хэшированный пароль по email"""
         raise NotImplementedError("Метод не вызван!")
 
     async def search(
