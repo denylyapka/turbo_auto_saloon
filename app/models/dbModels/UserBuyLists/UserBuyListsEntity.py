@@ -11,7 +11,7 @@ class UserBuyListsEntity(EntityDB):
     buy_list_id = Column(Integer, ForeignKey('buy_lists.id'), nullable=False)  # Ссылка на таблицу buy_lists
 
     # Определение отношений
-    user = relationship("UserEntity", back_populates="buy_list")
+    user = relationship("UserEntity", back_populates="user_buy_lists")  # Обновлено back_populates
     buy_list = relationship("BuyListsEntity", back_populates="user_association")
 
 

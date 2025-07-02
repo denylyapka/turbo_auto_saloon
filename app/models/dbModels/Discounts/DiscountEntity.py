@@ -16,8 +16,8 @@ class DiscountEntity(EntityDB):
     discount = Column(Float, nullable=False)
     for_user = Column(BigInteger, nullable=True)
 
-    car = relationship("CarEntity", back_populates="discount")
-    detail = relationship("DetailEntity", back_populates="discount")
+    car = relationship("CarEntity", back_populates="discounts")  # Во множественном числе
+    detail = relationship("DetailEntity", back_populates="discounts")
 
     def __init__(
             self, id=None, car_id=None, detail_id=None, name_discount=None, description=None,

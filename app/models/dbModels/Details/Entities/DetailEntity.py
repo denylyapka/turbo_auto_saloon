@@ -30,8 +30,9 @@ class DetailEntity(EntityDB):
     cross_reference = relationship("CrossReference", back_populates="detail")
     compatibility = relationship("Compatibility", back_populates="detail")
     reviews = relationship("ReviewEntity", back_populates="detail")  # Было review
-    discount = relationship("DiscountEntity", back_populates="detail")
-    watch_list = relationship("WatchListsEntity", back_populates="detail")
+    discounts = relationship("DiscountEntity", back_populates="detail")
+    watch_list = relationship("WatchListEntity", back_populates="detail")  # Обратите внимание на имя
+
 
     def __init__(
             self, id=None, name=None, part_number=None, oem_number=None, brand_id=None, category_id=None, price=None,

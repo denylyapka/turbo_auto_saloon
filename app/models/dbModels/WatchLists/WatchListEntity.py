@@ -16,8 +16,9 @@ class WatchListEntity(EntityDB):
 
     # Определение отношений
     user = relationship("UserEntity", back_populates="watch_list")
-    car = relationship("CarEntity", back_populates="watch_list")
-    detail = relationship("DetailEntity", back_populates="watch_list")
+    car = relationship("CarEntity", back_populates="watch_lists")  # Должно соответствовать CarEntity
+    detail = relationship("DetailEntity", back_populates="watch_list")  # Должно совпадать с DetailEntity
+
 
     def __init__(
             self, id=None, user_id=None, car_id=None, detail_id=None, created_at=None
