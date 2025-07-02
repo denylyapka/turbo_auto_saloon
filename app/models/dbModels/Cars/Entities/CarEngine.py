@@ -15,7 +15,7 @@ class CarEngine(EntityDB):
     power_nm = Column(Integer, nullable=False)
     
     # Relationship
-    car = relationship("CarEntity", back_populates="engine")
+    car = relationship("CarEntity", back_populates="engine", uselist=False)
 
     def __init__(
         self, id=None, turbine=None, engine=None, engine_cylinders=None, volume_engine=None, power_hp=None, power_nm=None

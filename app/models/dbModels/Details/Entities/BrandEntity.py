@@ -11,7 +11,7 @@ class Brand(EntityDB):
     description = Column(Text, nullable=True)
     logo_url = Column(String(255), nullable=True)
     
-    details = relationship("DetailEntity", back_populates="brand")
+    detail = relationship("DetailEntity", back_populates="brand")
 
     def __init__(self, id=None, name=None, description=None, logo_url=None):
         self.id = id

@@ -14,7 +14,7 @@ class Compatibility(EntityDB):
     year_to = Column(Integer, nullable=True)       # Год окончания
     engine_type = Column(String(50), nullable=True) # Тип двигателя ("2.5L бензин")
     
-    details = relationship("DetailEntity", back_populates="compatibilities")
+    detail = relationship("DetailEntity", back_populates="compatibility")
 
     def __init__(self, id=None, part_id=None, make=None, model=None, year_from=None, year_to=None, engine_type=None):
         self.id = id

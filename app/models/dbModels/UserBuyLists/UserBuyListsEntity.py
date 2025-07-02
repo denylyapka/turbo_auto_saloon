@@ -11,8 +11,8 @@ class UserBuyListsEntity(EntityDB):
     buy_list_id = Column(Integer, ForeignKey('buy_lists.id'), nullable=False)  # Ссылка на таблицу buy_lists
 
     # Определение отношений
-    user = relationship("UserEntity", back_populates="buy_lists")
-    buy_list = relationship("BuyListsEntity", back_populates="user_associations")
+    user = relationship("UserEntity", back_populates="buy_list")
+    buy_list = relationship("BuyListsEntity", back_populates="user_association")
 
 
     def __init__(
@@ -20,7 +20,7 @@ class UserBuyListsEntity(EntityDB):
     ):
         self.id = id
         self.user_id = user_id
-        self.buy_list_idid = buy_list_id
+        self.buy_list_id = buy_list_id
 
 
     def to_dict(self) -> dict:

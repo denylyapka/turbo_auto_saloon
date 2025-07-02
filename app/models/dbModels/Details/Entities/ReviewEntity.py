@@ -10,14 +10,14 @@ class ReviewEntity(EntityDB):
     
     id = Column(Integer, primary_key=True)
     part_id = Column(Integer, ForeignKey('details.id'), nullable=False)  # К какой запчасти
-    customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)  # Кто оставил
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)  # Кто оставил
     rating = Column(Integer, nullable=False)  # Оценка от 1 до 5
     comment = Column(Text, nullable=True)     # Текст отзыва
     created_at = Column(DateTime, default=datetime.utcnow)  # Дата отзыва
     
     # Связи
-    details = relationship("DetailEntity", back_populates="reviews")
-    users = relationship("UserEntity", back_populates="reviews")
+    user = relationship("UserEntity", back_populates="reviews")  # Согласовано с UserEntity
+    detail = relationship("DetailEntity", back_populates="reviews")  # Было review
 
 
     # Метод для расчета среднего рейтинга (можно сделать как property)
@@ -27,10 +27,10 @@ class ReviewEntity(EntityDB):
     #         return 0.0
     #     return sum([r.rating for r in self.reviews]) / len(self.reviews)
     
-    def __init__(self, id=None, part_id=None, customer_id=None, rating=None, comment=None, created_at=None):
+    def __init__(self, id=None, part_id=None, user_id=None, rating=None, comment=None, created_at=None):
         self.id = id
         self.part_id = part_id
-        self.customer_id = customer_id
+        self.user_id = user_id
         self.rating = rating
         self.comment = comment
         self.created_at = created_at
@@ -39,7 +39,7 @@ class ReviewEntity(EntityDB):
         return {
             'id': self.id,
             'part_id': self.part_id,
-            'customer_id': self.customer_id,
+            'user_id': self.user_id,
             'rating': self.rating,
             'comment': self.comment,
             'created_at': self.created_at,

@@ -40,6 +40,7 @@ class CarEntity(EntityDB):
             model=None, year_of_release=None, photos=None, mileage=None, gear_box=None, drive=None,
             condition=None, body_type=None, color=None
         ):
+        
         self.id = id
         self.vin_id = vin_id
         self.country_manufacturer = country_manufacturer

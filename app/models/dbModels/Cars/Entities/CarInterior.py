@@ -29,7 +29,7 @@ class CarInterior(EntityDB):
     memory = Column(String, nullable=True)
     
     # Relationship
-    car = relationship("CarEntity", back_populates="interior")
+    car = relationship("CarEntity", back_populates="interior", uselist=False)
 
     def __init__(
         self, id=None, conditioner=None, safety=None, steering_control_material=None, steering_control_side=None,

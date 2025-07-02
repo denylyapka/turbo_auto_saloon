@@ -16,7 +16,7 @@ class CarDimensions(EntityDB):
     rear_track = Column(SmallInteger, nullable=False)
     
     # Relationship
-    car = relationship("CarEntity", back_populates="dimensions")
+    car = relationship("CarEntity", back_populates="dimensions", uselist=False)
 
     def __init__(self, id=None, clearance=None, width=None, height=None, length=None, wheelbase=None, front_track=None, rear_track=None):
         self.id = id

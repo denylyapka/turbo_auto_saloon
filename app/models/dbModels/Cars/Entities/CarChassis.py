@@ -13,7 +13,7 @@ class CarChassis(EntityDB):
     volume_trunk = Column(SmallInteger, nullable=False)
     
     # Relationship
-    car = relationship("CarEntity", back_populates="chassis")
+    car = relationship("CarEntity", back_populates="chassis", uselist=False)
 
     def __init__(self, id=None, expenditure=None, overclocking=None, quantity_places=None, volume_trunk=None):
         self.id = id

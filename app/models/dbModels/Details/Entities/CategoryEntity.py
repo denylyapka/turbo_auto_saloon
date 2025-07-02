@@ -10,7 +10,7 @@ class Category(EntityDB):
     name = Column(String(100), nullable=False)
     parent_id = Column(Integer, ForeignKey('categories.id'), nullable=True)
     
-    details = relationship("DetailEntity", back_populates="category")
+    detail = relationship("DetailEntity", back_populates="category")
 
     def __init__(self, id=None, name=None, parent_id=None):
         self.id = id

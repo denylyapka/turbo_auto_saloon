@@ -25,13 +25,13 @@ class DetailEntity(EntityDB):
     video_review_url = Column(String(255), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
-    brand = relationship("Brand", back_populates="details")
-    category = relationship("Category", back_populates="details")
-    cross_references = relationship("CrossReference", back_populates="details")
-    compatibilities = relationship("Compatibility", back_populates="details")
-    reviews = relationship("Review", back_populates="details")
-    discounts = relationship("DiscountEntity", back_populates="detail")
-    watch_lists = relationship("WatchListsEntity", back_populates="detail")
+    brand = relationship("Brand", back_populates="detail")
+    category = relationship("Category", back_populates="detail")
+    cross_reference = relationship("CrossReference", back_populates="detail")
+    compatibility = relationship("Compatibility", back_populates="detail")
+    reviews = relationship("ReviewEntity", back_populates="detail")  # Было review
+    discount = relationship("DiscountEntity", back_populates="detail")
+    watch_list = relationship("WatchListsEntity", back_populates="detail")
 
     def __init__(
             self, id=None, name=None, part_number=None, oem_number=None, brand_id=None, category_id=None, price=None,

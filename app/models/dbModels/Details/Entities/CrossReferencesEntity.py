@@ -11,7 +11,7 @@ class CrossReference(EntityDB):
     brand = Column(String(100), nullable=False)  # Бренд-аналог (например, "TRW")
     number = Column(String(100), nullable=False)  # Альтернативный артикул
     
-    details = relationship("DetailEntity", back_populates="cross_references")
+    detail = relationship("DetailEntity", back_populates="cross_reference")
 
     def __init__(self, id=None, part_id=None, brand=None, number=None):
         self.id = id
