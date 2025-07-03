@@ -13,12 +13,12 @@ class ICarRepository:
     
     async def get_by_vin(self, vin: str) -> Optional[CarEntity]:
         raise NotImplementedError("Метод не реализован!")
-    
-    async def get_by_brand_model(self, brand: str, model: str) -> List[CarEntity]:
-        raise NotImplementedError("Метод не реализован!")
-    
+        
     async def update(self, car_id: int, car_data: dict) -> Optional[CarEntity]:
         raise NotImplementedError("Метод не реализован!")
     
     async def delete(self, car_id: int) -> bool:
+        raise NotImplementedError("Метод не реализован!")
+    
+    async def get_by_filters(self, filters: dict) -> List[CarEntity]:
         raise NotImplementedError("Метод не реализован!")

@@ -5,6 +5,9 @@ class ICarDimensionsRepository:
     async def create(self, dimensions: CarDimensions) -> CarDimensions:
         raise NotImplementedError("Метод не реализован!")
     
+    async def get_all(self) -> List[CarDimensions]:
+        raise NotImplementedError("Метод не реализован!")
+    
     async def get_by_id(self, dimensions_id: int) -> Optional[CarDimensions]:
         raise NotImplementedError("Метод не реализован!")
     

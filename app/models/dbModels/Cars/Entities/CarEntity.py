@@ -38,7 +38,7 @@ class CarEntity(EntityDB):
     def __init__(
             self, id=None, vin_id=None, country_manufacturer=None, description=None, brand=None,
             model=None, year_of_release=None, photos=None, mileage=None, gear_box=None, drive=None,
-            condition=None, body_type=None, color=None
+            condition=None, body_type=None, color=None, engine_id=None, chassis_id=None, dimensions_id=None, interior_id=None
         ):
         
         self.id = id
@@ -55,6 +55,10 @@ class CarEntity(EntityDB):
         self.condition = condition
         self.body_type = body_type
         self.color = color
+        self.engine_id = engine_id
+        self.chassis_id = chassis_id
+        self.dimensions_id = dimensions_id
+        self.interior_id = interior_id
 
     def to_dict(self):
         return {
@@ -71,5 +75,9 @@ class CarEntity(EntityDB):
             "drive": self.drive,
             "condition": self.condition,
             "body_type": self.body_type,
-            "color": self.color
+            "color": self.color,
+            "engine_id": self.engine_id,
+            "chassis_id": self.chassis_id,
+            "dimensions_id": self.dimensions_id,
+            "interior_id": self.interior_id
         }

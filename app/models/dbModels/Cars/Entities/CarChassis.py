@@ -7,10 +7,10 @@ class CarChassis(EntityDB):
     __tablename__ = 'car_chassis'
 
     id = Column(Integer, primary_key=True)
-    expenditure = Column(Float, nullable=False)
-    overclocking = Column(Float, nullable=False)
-    quantity_places = Column(SmallInteger, nullable=False)
-    volume_trunk = Column(SmallInteger, nullable=False)
+    expenditure = Column(Float, nullable=True)
+    overclocking = Column(Float, nullable=True)
+    quantity_places = Column(SmallInteger, nullable=True)
+    volume_trunk = Column(SmallInteger, nullable=True)
     
     # Relationship
     car = relationship("CarEntity", back_populates="chassis", uselist=False)

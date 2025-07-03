@@ -22,9 +22,19 @@ dependencies = [
     "psycopg2-binary (>=2.9.10,<3.0.0)",
     "passlib (>=1.7.4,<2.0.0)",
     "bcrypt (>=4.3.0,<5.0.0)",
+    "pytest (>=8.4.1,<9.0.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^1.0.0"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["app/_testing"]

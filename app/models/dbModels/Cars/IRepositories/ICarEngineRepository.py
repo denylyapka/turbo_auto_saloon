@@ -5,6 +5,9 @@ class ICarEngineRepository:
     async def create(self, engine: CarEngine) -> CarEngine:
         raise NotImplementedError("Метод не реализован!")
     
+    async def get_all(self) -> List[CarEngine]:
+        raise NotImplementedError("Метод не реализован!")
+    
     async def get_by_id(self, engine_id: int) -> Optional[CarEngine]:
         raise NotImplementedError("Метод не реализован!")
     

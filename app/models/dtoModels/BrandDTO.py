@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from app.models.dtoModels.Entity import Entity
 from typing import Optional
 
 
-class BrandDTO(BaseModel):
+class BrandDTO(Entity):
     id: int
     name: str
     description: Optional[str] = None

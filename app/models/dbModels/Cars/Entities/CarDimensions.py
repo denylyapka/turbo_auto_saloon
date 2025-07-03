@@ -7,13 +7,13 @@ class CarDimensions(EntityDB):
     __tablename__ = 'car_dimensions'
     
     id = Column(Integer, primary_key=True)
-    clearance = Column(SmallInteger, nullable=False)
-    width = Column(SmallInteger, nullable=False)
-    height = Column(SmallInteger, nullable=False)
-    length = Column(SmallInteger, nullable=False)
-    wheelbase = Column(SmallInteger, nullable=False)
-    front_track = Column(SmallInteger, nullable=False)
-    rear_track = Column(SmallInteger, nullable=False)
+    clearance = Column(SmallInteger, nullable=True)
+    width = Column(SmallInteger, nullable=True)
+    height = Column(SmallInteger, nullable=True)
+    length = Column(SmallInteger, nullable=True)
+    wheelbase = Column(SmallInteger, nullable=True)
+    front_track = Column(SmallInteger, nullable=True)
+    rear_track = Column(SmallInteger, nullable=True)
     
     # Relationship
     car = relationship("CarEntity", back_populates="dimensions", uselist=False)

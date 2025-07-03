@@ -41,4 +41,31 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
-print(333, settings.ASYNC_DATABASE_URI)
+print(settings.ASYNC_DATABASE_URI)
+
+
+class TestSettings(BaseSettings):
+    DATABASE_USER: str = "postgres"
+    DATABASE_PASSWORD: str = "8491"
+    DATABASE_HOST: str = "127.0.0.1"
+    DATABASE_PORT: int = 5432
+    DATABASE_NAME: str = "turbo_shop_backend_test_db_test"
+
+    ASYNC_DATABASE_URI: PostgresDsn | None = None
+
+    @field_validator("ASYNC_DATABASE_URI", mode="after")
+    def assemble_db_connection(cls, v: str | None, info: FieldValidationInfo) -> Any:
+        if not v:
+            return PostgresDsn.build(
+                scheme="postgresql+asyncpg",
+                username=info.data["DATABASE_USER"],
+                password=info.data["DATABASE_PASSWORD"],
+                host="localhost",  # info.data["DATABASE_HOST"],
+                port=info.data["DATABASE_PORT"],
+                path=f'{info.data["DATABASE_NAME"]}',
+            )
+        return v
+
+
+test_settings = TestSettings()
+

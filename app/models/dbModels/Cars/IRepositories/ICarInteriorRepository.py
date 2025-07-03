@@ -5,6 +5,9 @@ class ICarInteriorRepository:
     async def create(self, interior: CarInterior) -> CarInterior:
         raise NotImplementedError("Метод не реализован!")
     
+    async def get_all(self) -> List[CarInterior]:
+        raise NotImplementedError("Метод не реализован!")
+    
     async def get_by_id(self, interior_id: int) -> Optional[CarInterior]:
         raise NotImplementedError("Метод не реализован!")
     
