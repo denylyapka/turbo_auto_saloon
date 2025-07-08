@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 
 
 class CrossReference(EntityDB):
-    __tablename__ = 'cross_references'
+    __tablename__ = 'detail_cross_references'
     
     id = Column(Integer, primary_key=True)
     part_id = Column(Integer, ForeignKey('details.id'), nullable=False)

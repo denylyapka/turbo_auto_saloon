@@ -55,3 +55,14 @@ class CrossReferenceRepository(ICrossReferenceRepository):
             await self.session.commit()
             return True
         return False
+    
+    async def delete_by_part_id(self, part_id: int) -> bool:
+        query = select(CrossReference).where(CrossReference.part_id == part_id)
+        result = await self.session.execute(query)
+        cross_refs = result.scalars().all()
+        if cross_refs:
+            for cross_ref in cross_refs:
+                await self.session.delete(cross_ref)
+            await self.session.commit()
+            return True
+        return False

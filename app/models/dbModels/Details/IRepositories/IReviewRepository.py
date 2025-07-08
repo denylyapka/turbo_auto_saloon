@@ -3,6 +3,9 @@ from app.models.dbModels.Details.Entities.ReviewEntity import ReviewEntity
 
 
 class IReviewRepository:
+    async def check(self, review: ReviewEntity) -> bool:
+        raise NotImplementedError("Метод не реализован!")
+    
     async def create(self, review: ReviewEntity) -> ReviewEntity:
         raise NotImplementedError("Метод не реализован!")
     
@@ -13,6 +16,9 @@ class IReviewRepository:
         raise NotImplementedError("Метод не реализован!")
     
     async def get_by_part_id(self, part_id: int) -> List[ReviewEntity]:
+        raise NotImplementedError("Метод не реализован!")
+    
+    async def get_avg_rating(self, part_id: int) -> float:
         raise NotImplementedError("Метод не реализован!")
     
     async def get_by_user_id(self, user_id: int) -> List[ReviewEntity]:

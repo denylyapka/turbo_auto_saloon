@@ -20,3 +20,6 @@ class IBrandRepository:
     
     async def delete(self, brand_id: int) -> bool:
         raise NotImplementedError("Метод не реализован!")
+    
+    async def transfer_details(self, from_brand_id: int, to_brand_id: int) -> bool:
+        raise NotImplementedError("Метод не реализован!")

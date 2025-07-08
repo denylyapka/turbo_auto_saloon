@@ -4,7 +4,6 @@ from pydantic import BaseModel
 
 
 class DetailDTO(BaseModel):
-    id: int
     name: str
     part_number: str
     oem_number: Optional[str] = None
@@ -18,4 +17,3 @@ class DetailDTO(BaseModel):
     warranty_months: Optional[int] = None
     installation_guide_url: Optional[str] = None
     video_review_url: Optional[str] = None
-    created_at: datetime

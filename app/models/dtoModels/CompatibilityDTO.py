@@ -3,7 +3,6 @@ from typing import Optional
 
 
 class CompatibilityDTO(BaseModel):
-    id: int
     part_id: int
     make: str
     model: str

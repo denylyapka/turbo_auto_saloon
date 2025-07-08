@@ -23,3 +23,6 @@ class ICrossReferenceRepository:
     
     async def delete(self, cross_ref_id: int) -> bool:
         raise NotImplementedError("Метод не реализован!")
+    
+    async def delete_by_part_id(self, part_id: int) -> bool:
+        raise NotImplementedError("Метод не реализован!")

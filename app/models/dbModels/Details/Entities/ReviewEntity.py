@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 
 
 class ReviewEntity(EntityDB):
-    __tablename__ = 'reviews'
+    __tablename__ = 'detail_reviews'
     
     id = Column(Integer, primary_key=True)
     part_id = Column(Integer, ForeignKey('details.id'), nullable=False)  # К какой запчасти

@@ -4,11 +4,11 @@ from sqlalchemy.orm import relationship
 
 
 class Category(EntityDB):
-    __tablename__ = 'categories'
+    __tablename__ = 'detail_categories'
     
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
-    parent_id = Column(Integer, ForeignKey('categories.id'), nullable=True)
+    parent_id = Column(Integer, ForeignKey('detail_categories.id'), nullable=True)
     
     detail = relationship("DetailEntity", back_populates="category")
 

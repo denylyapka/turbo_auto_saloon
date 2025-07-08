@@ -23,3 +23,6 @@ class ICompatibilityRepository:
     
     async def delete(self, compatibility_id: int) -> bool:
         raise NotImplementedError("Метод не реализован!")
+    
+    async def delete_by_detail_id(self, detail_id: int) -> bool:
+        raise NotImplementedError("Метод не реализован!")

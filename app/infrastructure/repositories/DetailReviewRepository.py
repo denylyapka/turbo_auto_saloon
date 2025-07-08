@@ -1,6 +1,8 @@
 from typing import Optional, List
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
+from sqlalchemy import func
+
 from app.models.dbModels.Details.Entities.ReviewEntity import ReviewEntity
 from app.models.dbModels.Details.IRepositories.IReviewRepository import IReviewRepository
 
@@ -8,6 +10,12 @@ from app.models.dbModels.Details.IRepositories.IReviewRepository import IReviewR
 class ReviewRepository(IReviewRepository):
     def __init__(self, session: AsyncSession):
         self.session = session
+
+    async def check(self, review: ReviewEntity) -> bool:
+        query = select(ReviewEntity).where((ReviewEntity.part_id == review.part_id) & (ReviewEntity.user_id == review.user_id))
+        result = await self.session.execute(query)
+        existing_review = result.scalars().first()
+        return existing_review is not None
     
     async def create(self, review: ReviewEntity) -> ReviewEntity:
         self.session.add(review)
@@ -33,6 +41,15 @@ class ReviewRepository(IReviewRepository):
         reviews = result.scalars().all()
         return [review.to_dict() for review in reviews] if reviews else []
     
+    async def get_avg_rating(self, part_id: int) -> float:
+        # Используем func.avg для вычисления среднего значения
+        result = await self.session.execute(
+            select(func.avg(ReviewEntity.rating))
+            .where(ReviewEntity.part_id == part_id)
+        )
+        avg = result.scalar() or 0  # Возвращаем 0 если нет отзывов
+        return round(float(avg), 2)  # Округляем до 2 знаков
+    
     async def get_by_user_id(self, user_id: int) -> List[ReviewEntity]:
         query = select(ReviewEntity).where(ReviewEntity.user_id == user_id)
         result = await self.session.execute(query)
@@ -48,9 +65,23 @@ class ReviewRepository(IReviewRepository):
         return [review.to_dict() for review in reviews] if reviews else []
     
     async def update(self, review: ReviewEntity) -> ReviewEntity:
-        await self.session.commit()
-        await self.session.refresh(review)
-        return review.to_dict() if review else None
+        # Проверяем, существует ли отзыв в базе
+        existing_review = await self.session.get(ReviewEntity, review.id)
+        if not existing_review:
+            return None
+
+        try:
+            # Обновляем все изменяемые поля (кроме id)
+            for attr in ['part_id', 'user_id', 'rating', 'comment']:
+                if hasattr(review, attr):
+                    setattr(existing_review, attr, getattr(review, attr))
+            
+            await self.session.commit()
+            await self.session.refresh(existing_review)
+            return existing_review.to_dict()
+        except Exception as e:
+            await self.session.rollback()
+            raise ValueError(f"Failed to update review: {str(e)}") from e
     
     async def delete(self, review_id: int) -> bool:
         query = select(ReviewEntity).where(ReviewEntity.id == review_id)

@@ -57,3 +57,19 @@ class CompatibilityRepository(ICompatibilityRepository):
             await self.session.commit()
             return True
         return False
+    
+    async def delete_by_detail_id(self, detail_id: int) -> bool:
+        query = select(Compatibility).where(Compatibility.part_id == detail_id)
+        result = await self.session.execute(query)
+        compatibilities = result.scalars().all()
+
+        # print("compatibilities:", compatibilities)
+        # for compatibility in compatibilities:
+        #     print("compatibility:", compatibility.to_dict())
+        # return compatibilities
+        if compatibilities:
+            for compatibility in compatibilities:
+                await self.session.delete(compatibility)
+            await self.session.commit()
+            return True
+        return False

@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 
 
 class Brand(EntityDB):
-    __tablename__ = 'brands'
+    __tablename__ = 'detail_brands'
     
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False, unique=True)

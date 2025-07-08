@@ -23,3 +23,6 @@ class ICategoryRepository:
     
     async def delete(self, category_id: int) -> bool:
         raise NotImplementedError("Метод не реализован!")
+    
+    async def transfer_details(self, from_category_id: int, to_category_id: int) -> bool:
+        raise NotImplementedError("Метод не реализован!")

@@ -19,8 +19,6 @@ from app.models.dtoModels.InteriorDTO import InteriorDTO
 router = APIRouter()
 
 
-# CarEntityService
-
 @router.post("/car")
 async def create(car_dto: CarTotalDTO, session: AsyncSession = Depends(fastapi_get_db)):
     repo = CarEntityService(session)
@@ -74,10 +72,15 @@ async def create(car_dto: CarTotalDTO, session: AsyncSession = Depends(fastapi_g
         memory=car_dto.memory
     )
 
-    response_create_car_chassis = await ChassisService.create(self=repo, chassis=chassis_data)
-    response_create_car_engine = await EngineService.create(self=repo, engine=engine_data)
-    response_create_car_dimensions = await DimensionsService.create(self=repo, dimensions=dimensions_data)
-    response_create_car_interior = await InteriorService.create(self=repo, interior=interior_data)
+    repo_chassis = ChassisService(session)
+    repo_engine = EngineService(session)
+    repo_dimensions = DimensionsService(session)
+    repo_interior = InteriorService(session)
+
+    response_create_car_chassis = await ChassisService.create(self=repo_chassis, chassis=chassis_data)
+    response_create_car_engine = await EngineService.create(self=repo_engine, engine=engine_data)
+    response_create_car_dimensions = await DimensionsService.create(self=repo_dimensions, dimensions=dimensions_data)
+    response_create_car_interior = await InteriorService.create(self=repo_interior, interior=interior_data)
 
     car_data = CarEntity(
         vin_id=car_dto.vin_id,

@@ -4,10 +4,10 @@ from sqlalchemy.orm import relationship
 
 
 class Compatibility(EntityDB):
-    __tablename__ = 'compatibilities'
+    __tablename__ = 'detail_compatibilities'
     
     id = Column(Integer, primary_key=True)
-    part_id = Column(Integer, ForeignKey('details.id'), nullable=False)
+    part_id = Column(Integer, ForeignKey('details.id', ondelete="CASCADE"), nullable=True)
     make = Column(String(50), nullable=False)      # Марка (например, "Toyota")
     model = Column(String(50), nullable=False)     # Модель ("Camry")
     year_from = Column(Integer, nullable=True)     # Год начала
