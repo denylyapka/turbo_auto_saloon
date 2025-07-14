@@ -15,37 +15,37 @@ class DiscountRepository(IDiscountRepository):
         await self.session.refresh(discount)
         return discount
     
-    async def get_by_id(self, discount_id: int) -> Optional[DiscountEntity]:
+    async def get_by_id(self, discount_id: int) -> Optional[dict]:
         query = select(DiscountEntity).where(DiscountEntity.id == discount_id)
         result = await self.session.execute(query)
-        fine = result.scalars().first()
-        return fine.to_dict() if fine else None
+        discount = result.scalars().first()
+        return discount.to_dict() if discount else None
     
-    async def get_by_car_id(self, car_id: int) -> Optional[DiscountEntity]:
+    async def get_by_car_id(self, car_id: int) -> Optional[dict]:
         query = select(DiscountEntity).where(DiscountEntity.car_id == car_id)
         result = await self.session.execute(query)
-        fine = result.scalars().first()
-        return fine.to_dict() if fine else None
-    
-    async def get_by_detail_id(self, detail_id: int) -> Optional[DiscountEntity]:
+        discount = result.scalars().first()
+        return discount.to_dict() if discount else None
+        
+    async def get_by_detail_id(self, detail_id: int) -> Optional[dict]:
         query = select(DiscountEntity).where(DiscountEntity.detail_id == detail_id)
         result = await self.session.execute(query)
-        fine = result.scalars().first()
-        return fine.to_dict() if fine else None
+        discount = result.scalars().first()
+        return discount.to_dict() if discount else None
     
-    async def get_by_for_user_id(self, for_user: int) -> Optional[DiscountEntity]:
+    async def get_by_for_user_id(self, for_user: int) -> Optional[dict]:
         query = select(DiscountEntity).where(DiscountEntity.for_user == for_user)
         result = await self.session.execute(query)
-        fine = result.scalars().first()
-        return fine.to_dict() if fine else None
+        discount = result.scalars().first()
+        return discount.to_dict() if discount else None
     
-    async def get_by_discount_percents(self, discount: int) -> Optional[DiscountEntity]:
+    async def get_by_discount_percents(self, discount: int) -> List[dict]:
         query = select(DiscountEntity).where(DiscountEntity.discount == discount)
         result = await self.session.execute(query)
-        fine = result.scalars().first()
-        return fine.to_dict() if fine else None
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []
     
-    async def update(self, discount_id: int, discount_data: dict) -> Optional[DiscountEntity]:
+    async def update(self, discount_id: int, discount_data: dict) -> Optional[dict]:
         query = select(DiscountEntity).where(DiscountEntity.id == discount_id)
         result = await self.session.execute(query)
         fine = result.scalars().first()
@@ -67,32 +67,44 @@ class DiscountRepository(IDiscountRepository):
             return True
         return False
     
-    async def get_all(self) -> List[DiscountEntity]:
+    async def get_all(self) -> List[dict]:
         query = select(DiscountEntity)
         result = await self.session.execute(query)
-        fines = result.scalars().all()
-        return [fine.to_dict() for fine in fines]
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []
     
-    async def get_all_by_car_id(self, car_id: int) -> List[DiscountEntity]:
+    async def get_all_cars(self) -> List[dict]:
+        query = select(DiscountEntity).where(DiscountEntity.car_id != 0)
+        result = await self.session.execute(query)
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []
+    
+    async def get_all_details(self) -> List[dict]:
+        query = select(DiscountEntity).where(DiscountEntity.detail_id != 0)
+        result = await self.session.execute(query)
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []
+    
+    async def get_all_by_car_id(self, car_id: int) -> List[dict]:
         query = select(DiscountEntity).where(DiscountEntity.car_id == car_id)
         result = await self.session.execute(query)
-        fines = result.scalars().all()
-        return [fine.to_dict() for fine in fines]
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []
     
-    async def get_all_by_detail_id(self, detail_id: int) -> List[DiscountEntity]:
+    async def get_all_by_detail_id(self, detail_id: int) -> List[dict]:
         query = select(DiscountEntity).where(DiscountEntity.detail_id == detail_id)
         result = await self.session.execute(query)
-        fines = result.scalars().all()
-        return [fine.to_dict() for fine in fines]
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []
     
-    async def get_all_by_for_user_id(self, for_user: int) -> List[DiscountEntity]:
+    async def get_all_by_for_user_id(self, for_user: int) -> List[dict]:
         query = select(DiscountEntity).where(DiscountEntity.for_user == for_user)
         result = await self.session.execute(query)
-        fines = result.scalars().all()
-        return [fine.to_dict() for fine in fines]
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []
     
-    async def get_all_by_discount_percents(self, discount: int) -> List[DiscountEntity]:
+    async def get_all_by_discount_percents(self, discount: int) -> List[dict]:
         query = select(DiscountEntity).where(DiscountEntity.discount == discount)
         result = await self.session.execute(query)
-        fines = result.scalars().all()
-        return [fine.to_dict() for fine in fines]
+        discounts = result.scalars().all()
+        return [discount.to_dict() for discount in discounts] if discounts else []

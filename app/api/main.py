@@ -16,6 +16,8 @@ from app.api.routes.Detail.AdminRout import router as admin_detail_rout
 
 from app.api.routes.UserBuyLists.UserRout import router as user_buy_lists
 
+from app.api.routes.Discounts.UserRout import router as user_discounts_rout
+from app.api.routes.Discounts.AdminRout import router as admin_discounts_rout
 
 
 api_router = APIRouter()
@@ -35,3 +37,6 @@ api_router.include_router(user_detail_rout, prefix="/detail", tags=["Detail"])
 api_router.include_router(admin_detail_rout, prefix="/detail/admin", tags=["[ADMIN] Detail"])
 
 api_router.include_router(user_buy_lists, prefix="/user_buy_lists", tags=["User Buy Lists"])
+
+api_router.include_router(user_discounts_rout, prefix="/discounts", tags=["Discounts"])
+api_router.include_router(admin_discounts_rout, prefix="/discounts/admin", tags=["[ADMIN] Discounts"])
