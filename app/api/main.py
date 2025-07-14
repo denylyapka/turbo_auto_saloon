@@ -14,6 +14,9 @@ from app.api.routes.Car.AdminRout import router as admin_car_rout
 from app.api.routes.Detail.UserRout import router as user_detail_rout
 from app.api.routes.Detail.AdminRout import router as admin_detail_rout
 
+from app.api.routes.UserBuyLists.UserRout import router as user_buy_lists
+
+
 
 api_router = APIRouter()
 
@@ -30,3 +33,5 @@ api_router.include_router(admin_car_rout, prefix="/car/admin", tags=["[ADMIN] Ca
 
 api_router.include_router(user_detail_rout, prefix="/detail", tags=["Detail"])
 api_router.include_router(admin_detail_rout, prefix="/detail/admin", tags=["[ADMIN] Detail"])
+
+api_router.include_router(user_buy_lists, prefix="/user_buy_lists", tags=["User Buy Lists"])

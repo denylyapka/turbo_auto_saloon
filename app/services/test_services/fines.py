@@ -26,6 +26,4 @@ async def create_fine(session: AsyncSession) -> Any:
         datetime_receipt=datetime.datetime.now()
     )
 
-    data = await repo_fines.create(fine=fine)
-
-    return data
+    return await repo_fines.create(fine=fine)

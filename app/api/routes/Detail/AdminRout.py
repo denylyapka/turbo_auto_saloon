@@ -22,7 +22,7 @@ from app.models.dbModels.Details.Entities.DetailEntity import DetailEntity
 router = APIRouter()
 
 
-# Заполнение бренды + категории + детали
+# Заполнение бренды + категории + детали + компатибилити
 
 @router.post("/detail")
 async def create(details: DetailTotalDTO, session: AsyncSession = Depends(fastapi_get_db)):

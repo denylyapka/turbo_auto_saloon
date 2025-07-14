@@ -17,22 +17,25 @@ class UserBuyListsRepository(IUserBuyListsRepository):
     async def get_by_id(self, user_buy_list_id: int) -> Optional[UserBuyListsEntity]:
         query = select(UserBuyListsEntity).where(UserBuyListsEntity.id == user_buy_list_id)
         result = await self.session.execute(query)
-        return result.scalars().first()
+        return result.scalars().first().to_dict()
 
     async def get_by_user_id(self, user_id: int) -> List[UserBuyListsEntity]:
         query = select(UserBuyListsEntity).where(UserBuyListsEntity.user_id == user_id)
         result = await self.session.execute(query)
-        return result.scalars().all()
+        user_bls = result.scalars().all()
+        return [user_bl.to_dict() for user_bl in user_bls]
 
     async def get_by_buy_list_id(self, buy_list_id: int) -> List[UserBuyListsEntity]:
         query = select(UserBuyListsEntity).where(UserBuyListsEntity.buy_list_id == buy_list_id)
         result = await self.session.execute(query)
-        return result.scalars().all()
+        user_bls = result.scalars().all()
+        return [user_bl.to_dict() for user_bl in user_bls]
 
     async def get_all(self) -> List[UserBuyListsEntity]:
         query = select(UserBuyListsEntity)
         result = await self.session.execute(query)
-        return result.scalars().all()
+        user_bls = result.scalars().all()
+        return [user_bl.to_dict() for user_bl in user_bls]
 
     async def update(self, user_buy_list: UserBuyListsEntity) -> UserBuyListsEntity:
         await self.session.commit()

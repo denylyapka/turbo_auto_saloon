@@ -18,6 +18,10 @@ class IBuyListsRepository:
     async def get_all(self) -> List[BuyListsEntity]:
         """Получить все списки покупок"""
         raise NotImplementedError("Метод не реализован!")
+    
+    async def get_products_by_buy_list_id(self, buy_list_id: int) -> List[BuyListsEntity]:
+        """Получить продукты по ID списка покупок"""
+        raise NotImplementedError("Метод не реализован!")
 
     async def update(self, buy_list: BuyListsEntity) -> BuyListsEntity:
         """Обновить список покупок"""
