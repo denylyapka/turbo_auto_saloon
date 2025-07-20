@@ -10,6 +10,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
+    "sds": "file:sds",
+    "simple-design-system": "^5.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -19,6 +21,9 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "off"
+    },
     "extends": [
       "react-app",
       "react-app/jest"
