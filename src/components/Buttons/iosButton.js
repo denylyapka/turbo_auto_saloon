@@ -7,8 +7,8 @@ export function IosButton({ children, top = '', left = '', onClick, color }) {
 
   return (
     <LiquidGlass
-      displacementScale={48}
-      blurAmount={0.01}
+      displacementScale={Math.floor(Math.random() * 15) + 12}
+      blurAmount={0}
       saturation={130}
       aberrationIntensity={10}
       elasticity={0.85}
@@ -24,6 +24,7 @@ export function IosButton({ children, top = '', left = '', onClick, color }) {
         fontWeight: 500,
         cursor: 'pointer',
         fontSize: '16px',
+        verticalAlign: 'top',
       }}>
         {children || 'Кнопка'}
       </span>

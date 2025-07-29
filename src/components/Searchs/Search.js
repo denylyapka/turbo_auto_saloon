@@ -6,7 +6,7 @@ const SearchContainer = styled.div`
   position: relative;
   width: 200px;
   max-width: 400px;
-  margin-left: 20px;
+  margin-left: 0px;
   z-index: 1;
 `;
 

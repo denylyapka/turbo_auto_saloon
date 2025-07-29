@@ -43,7 +43,7 @@ const SearchIconWrapper = styled.div`
   justify-content: center;
 `;
 
-const SearchComponent = ({ placeholder = "Поиск", value, onChange }) => {
+const SearchComponentLong = ({ placeholder = "Поиск", value, onChange }) => {
   return (
     <SearchContainer>
       <SearchInputLong
@@ -59,4 +59,4 @@ const SearchComponent = ({ placeholder = "Поиск", value, onChange }) => {
   );
 };
 
-export default SearchComponent;
+export default SearchComponentLong;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const ProductCard = ({ 
+const ShopCard = ({ 
   imageUrl, 
   price, 
   title, 
@@ -42,7 +42,7 @@ const ProductCard = ({
 const StyledCardContainer = styled.div`
   width: 310px;
   height: 380px;
-  background: white;
+  background: #494949;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -72,8 +72,7 @@ const ProductImage = styled.img`
 `;
 
 const DetailsContainer = styled.div`
-  width: 100%;
-  height: 190px;
+  height: 42%;
   padding: 20px;
   background: #494949;
   margin-top: -10px;
@@ -81,6 +80,7 @@ const DetailsContainer = styled.div`
   z-index: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Price = styled.h1`
@@ -110,4 +110,4 @@ const Availability = styled.p`
   margin: 0;
 `;
 
-export default ProductCard;
+export default ShopCard;

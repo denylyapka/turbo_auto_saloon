@@ -9,58 +9,56 @@ import { useNavigate } from 'react-router-dom';
 
 // Константы с ссылками
 const MENU_ITEMS = {
-  detailing: {
-    items: [
-      { name: 'Полировка', link: '/detailing' },
-      { name: 'Защитные покрытия', link: '/detailing' },
-      { name: 'PDR выпрямление вмятин', link: '/detailing' },
-      { name: 'Локальная окраска', link: '/detailing' },
-      { name: 'Химчистка', link: '/detailing' },
-      { name: 'Реставрация салона', link: '/detailing' }
-    ],
-    mainLink: '/detailing'
-  },
-  services: {
-    items: [
-      { name: 'Диагностика и ремонт', link: '/services' },
-      { name: 'Программный чип-тюнинг', link: '/services' },
-      { name: 'Русификация и дооснащение', link: '/services' },
-      { name: 'Тюнинг автосвета', link: '/services' }
-    ],
-    mainLink: '/services'
-  },
   shop: {
     mainLink: '/shop'
   },
-  selection: {
-    mainLink: '/selection'
+  catalog: {
+    items: [
+      { name: 'Автозапчасти', link: '/shop/zapchasti' },
+      { name: 'Автохимия и аксессуары', link: '/shop/kxhimiya' }
+    ],
+    mainLink: '/catalog'
+  },
+  pay: {
+    mainLink: '/pay-info'
+  },
+  delivery: {
+    mainLink: '/delivery'
+  },
+  return: {
+    mainLink: '/return'
   }
 };
 
 const menuItems = [
   {
-    title: "Детейлинг",
-    category: "detailing",
-    subItems: MENU_ITEMS.detailing.items
-  },
-  {
-    title: "Услуги",
-    category: "services",
-    subItems: MENU_ITEMS.services.items
-  },
-  {
     title: "Магазин",
     category: "shop",
-    subItems: MENU_ITEMS.shop.items
+    subItems: null
   },
   {
-    title: "Подбор авто",
-    category: "selection",
+    title: "Каталог",
+    category: "catalog",
+    subItems: MENU_ITEMS.catalog.items
+  },
+  {
+    title: "Оплата",
+    category: "pay",
+    subItems: null
+  },
+  {
+    title: "Доставка",
+    category: "delivery",
+    subItems: null
+  },
+  {
+    title: "Возврат",
+    category: "return",
     subItems: null
   }
 ];
 
-const StandartLeftMenu = ({ iconName, onClose }) => {
+const ShopLeftMenu = ({ iconName, onClose }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const navigate = useNavigate();
@@ -292,4 +290,4 @@ const SocialIconsContainer = styled.div`
   gap: 20px;
 `;
 
-export default StandartLeftMenu;
+export default ShopLeftMenu;

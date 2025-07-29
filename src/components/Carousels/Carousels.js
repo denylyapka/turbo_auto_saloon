@@ -50,9 +50,9 @@ const FullWidthCarousel = ({ images }) => {
       </CarouselTrack>
 
       {/* Кнопка "Назад" с эффектом LiquidGlass */}
-      <IosButton top="50%" left="10%" children="Сюда" onClick={goToPrev} color="white"></IosButton>
+      <IosButton top="50%" left="10%" children="<" onClick={goToPrev} color="white"></IosButton>
       {/* Кнопка "Вперед" с эффектом LiquidGlass */}
-      <IosButton top="50%" left="90%" children="Туда" onClick={goToNext} color="white"></IosButton>
+      <IosButton top="50%" left="90%" children=">" onClick={goToNext} color="white"></IosButton>
 
       <Indicators>
         {images.map((_, index) => (
@@ -109,6 +109,8 @@ const Indicators = styled.div`
 `;
 
 const IndicatorLine = styled.div`
+  position: relative;
+  z-index: 10;
   width: 34px;
   height: ${props => props.$active ? '3px' : '2px'};
   background: ${props => props.$active ? 'white' : 'rgba(255, 255, 255, 0.5)'};

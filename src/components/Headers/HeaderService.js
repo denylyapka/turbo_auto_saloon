@@ -5,14 +5,13 @@ import SearchComponent from "../Searchs/Search";
 import SvgIconsHeader from "../SVG/Header";
 
 const HeaderContainer = styled.header`
-  background-color: #313131;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
   position: relative;
-  z-index: 1001;
+  z-index: 1;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 769px) {
@@ -45,8 +44,8 @@ const BurgerButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px;
-  display: ${({ $isMobile }) => $isMobile ? 'flex' : 'none'};
+  padding: 4px;
+  display: ${({ $isMobile }) => ($isMobile ? "flex" : "none")};
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
@@ -66,18 +65,21 @@ const BurgerLine = styled.span`
   background: white;
   transition: all 0.3s ease;
   transform-origin: center;
-  
+
   &:nth-child(1) {
-    transform: ${({ $menuOpen }) => $menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none'};
+    transform: ${({ $menuOpen }) =>
+      $menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none"};
   }
-  
+
   &:nth-child(2) {
-    opacity: ${({ $menuOpen }) => $menuOpen ? '0' : '1'};
-    transform: ${({ $menuOpen }) => $menuOpen ? 'translateX(-20px)' : 'none'};
+    opacity: ${({ $menuOpen }) => ($menuOpen ? "0" : "1")};
+    transform: ${({ $menuOpen }) =>
+      $menuOpen ? "translateX(-20px)" : "none"};
   }
-  
+
   &:nth-child(3) {
-    transform: ${({ $menuOpen }) => $menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none'};
+    transform: ${({ $menuOpen }) =>
+      $menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none"};
   }
 `;
 
@@ -102,21 +104,22 @@ const CartIconWrapper = styled.div`
   display: flex;
 `;
 
-const Header = ({ onMenuToggle, isMobile, menuOpen }) => {
+const Header = ({ onMenuToggle, isMobile, menuOpen, isShop }) => {
   const [searchValue, setSearchValue] = React.useState("");
-  const [cartItemsCount, setCartItemsCount] = React.useState(7); // Начальное значение
-
+  const [cartItemsCount] = React.useState(7);
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
 
+  console.log("isShop", isShop)
+
   return (
     <HeaderContainer>
       <HeaderSection>
         {/* Бургер-кнопка (только на мобильных) */}
-        <BurgerButton 
-          $isMobile={isMobile} 
+        <BurgerButton
+          $isMobile={isMobile}
           onClick={onMenuToggle}
           aria-label="Меню"
         >
@@ -125,10 +128,10 @@ const Header = ({ onMenuToggle, isMobile, menuOpen }) => {
           <BurgerLine $menuOpen={menuOpen} />
         </BurgerButton>
 
-        {/* Поиск - скрываем на мобильных при открытом меню */}
+        {/* Поле поиска - всегда отображается, кроме случая когда меню открыто на мобильном */}
         {(!isMobile || !menuOpen) && (
-          <SearchComponent 
-            placeholder="Поиск по сайту..." 
+          <SearchComponent
+            placeholder={isShop ? "Название, артикул, VIN" : "Поиск по сайту..."}
             value={searchValue}
             onChange={handleSearchChange}
             width={isMobile ? "180px" : "250px"}
@@ -138,16 +141,14 @@ const Header = ({ onMenuToggle, isMobile, menuOpen }) => {
 
       <HeaderSection>
         <IconsContainer>
-          
-          <SvgIconsHeader iconName="user" size="18"/>
+          <SvgIconsHeader iconName="user" size="18" />
           
           <CartIconWrapper>
-            <SvgIconsHeader iconName="cart" size="18"/>
+            <SvgIconsHeader iconName="cart" size="18" />
             {cartItemsCount > 0 && <CartCounter>{cartItemsCount}</CartCounter>}
           </CartIconWrapper>
           
-          <SvgIconsHeader iconName="call" size="14"/>
-        
+          <SvgIconsHeader iconName="call" size="14" />
         </IconsContainer>
       </HeaderSection>
     </HeaderContainer>
