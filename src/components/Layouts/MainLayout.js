@@ -50,8 +50,10 @@ const MENU_ITEMS = {
 
 // Анимации
 const slideAnimation = keyframes`
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-20%); opacity: 1; }
+  0% { transform: translateX(0); opacity: 0; }
+  5% { transform: translateX(0); opacity: 1; }
+  98% { transform: translateX(-20%); opacity: 1; }
+  100% { opacity: 0; }
 `;
 
 const underlineAnimation = keyframes`
@@ -172,6 +174,9 @@ const FullscreenCarousel = styled.div`
     ${({ $isMobile }) => $isMobile && css`
       animation: ${css`${slideAnimation}`} 10s linear infinite;
     `}
+    ${({ $isMobile }) => !$isMobile && css`
+      width: 100%;
+    `}
   }
 `;
 
@@ -225,7 +230,7 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
         marginLeft: isMobile ? "30px" : '20px', 
         marginRight: isMobile ? "0" : '-60px'
       }}>
-        <SvgIconsLogo iconName={"logo"} size={isMobile ? '30' : '40'}/>
+        <SvgIconsLogo iconName={"logo"} size={isMobile ? '46' : '40'}/>
       </div>
 
       <nav style={{
@@ -277,9 +282,9 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
         justifyContent: isMobile ? 'center' : 'flex-end',
         width: isMobile ? '100%' : 'auto'
       }}>
-        <SvgIconsHeader iconName="call" size="14"/>          
-        <SvgIconsHeader iconName="user" size="18"/>
-        <SvgIconsHeader iconName="map-pin" size="14"/>
+        <SvgIconsHeader iconName="call" size="20"/>          
+        <SvgIconsHeader iconName="user" size="24"/>
+        <SvgIconsHeader iconName="map-pin" size="20"/>
       </div>
     </header>
   );
