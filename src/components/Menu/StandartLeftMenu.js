@@ -96,7 +96,7 @@ const StandartLeftMenu = ({ iconName, onClose }) => {
     <MenuContainer>
       <LogoContainer>
         <SVGButtons 
-          svg={<SvgIconsLogo iconName={"logo"} />} 
+          svg={<SvgIconsLogo iconName={"logo"} size={36}/>} 
           link="/"
           title="Наш YouTube"
           className="social-button"

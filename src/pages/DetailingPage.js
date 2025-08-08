@@ -1,5 +1,5 @@
 // src/pages/DetailingPage.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import FullWidthCarousel from '../components/Carousels/Carousels';
 import DetailingGrid from '../components/Cards/Detailing/CardsSection';
@@ -59,6 +59,14 @@ export const DETAILING_DATA = [
 ];
 
 const DetailingPage = () => {
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     window.location.reload();
+  //   }, 5000); // Перезагрузка каждые 5 секунд
+
+  //   return () => clearInterval(intervalId); // Очистка интервала при размонтировании
+  // }, []);
+
   return (
     <>
       <FullWidthCarousel images={CAROUSEL_IMAGES} />

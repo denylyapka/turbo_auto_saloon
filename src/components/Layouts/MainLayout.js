@@ -278,12 +278,12 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
 
       <div style={{
         display: 'flex',
-        gap: isMobile ? '20px' : '40px',
+        gap: isMobile ? '30px' : '40px',
         justifyContent: isMobile ? 'center' : 'flex-end',
         width: isMobile ? '100%' : 'auto'
       }}>
         <SvgIconsHeader iconName="call" size="20"/>          
-        <SvgIconsHeader iconName="user" size="24"/>
+        <SvgIconsHeader iconName="user" size="26"/>
         <SvgIconsHeader iconName="map-pin" size="20"/>
       </div>
     </header>
