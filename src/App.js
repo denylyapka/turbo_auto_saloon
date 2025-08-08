@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/Layouts/MainLayout';
@@ -7,6 +6,8 @@ import DetailingPage from './pages/DetailingPage';
 import { ShopMainPage, ShopPartsPage, ShopChemistryPage } from './pages/ShopPage';
 import DefaultLayout from 'components/Layouts/DefaultLayout';
 import ShopLayout from 'components/Layouts/ShopLayout';
+import { AboutServicePage, AboutDetailingPage } from './pages/AboutServDetailingPage';
+import InformationPage from './pages/InformationPage';
 
 const App = () => {
   return (
@@ -14,21 +15,37 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainLayout />} />
 
-
+        {/* Детейлинг раздел */}
         <Route path="/detailing" element={
           <DefaultLayout>
             <DetailingPage />
           </DefaultLayout>
         } />
+        <Route 
+          path="/detailing/:id/view" 
+          element={
+            <DefaultLayout>
+              <AboutDetailingPage />
+            </DefaultLayout>
+          } 
+        />
 
-
+        {/* Сервис раздел */}
         <Route path="/services" element={
           <DefaultLayout>
             <ServicesPage />
           </DefaultLayout>
         } />
+        <Route 
+          path="/services/:id/view" 
+          element={
+            <DefaultLayout>
+              <AboutServicePage />
+            </DefaultLayout>
+          } 
+        />
 
-
+        {/* Магазин */}
         <Route path="/shop" element={
           <ShopLayout>
             <ShopMainPage />
@@ -45,23 +62,22 @@ const App = () => {
           </ShopLayout>
         } />
 
-
+        {/* Информационные страницы */}
         <Route path="/pay-info" element={
           <ShopLayout>
-            <h1>pay-info</h1>
+            <InformationPage pageType="payment" />
           </ShopLayout>
         } />
         <Route path="/delivery" element={
           <ShopLayout>
-            <h1>delivery</h1>
+            <InformationPage pageType="delivery" />
           </ShopLayout>
         } />
         <Route path="/return" element={
           <ShopLayout>
-            <h1>return</h1>
+            <InformationPage pageType="returns" />
           </ShopLayout>
         } />
-
       </Routes>
     </BrowserRouter>
   );

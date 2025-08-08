@@ -7,11 +7,10 @@ const ServicesGrid = ({ services }) => {
     <div>
       <ServicesHeader>Услуги</ServicesHeader>
       <GridContainer>
-        {services.map((service, index) => (
+        {services.map((service) => (
           <ServiceCard
-            key={index}
-            imageUrl={service.imageUrl}
-            title={service.title}
+            key={service.index} // Теперь key будет доступен
+            service={service} // Передаем весь объект service
           />
         ))}
       </GridContainer>

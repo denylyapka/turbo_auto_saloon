@@ -1,17 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import DetailingCards from './DetailingCards';
+import DetailingCard from './DetailingCards';
 
 const DetailingGrid = ({ services }) => {
   return (
     <div>
       <DetailingHeader>Детейлинг</DetailingHeader>
       <GridContainer>
-        {services.map((service, index) => (
-          <DetailingCards
-            key={index}
-            imageUrl={service.imageUrl}
-            title={service.title}
+        {services.map((service) => (
+          <DetailingCard
+            key={service.index}
+            service={service}
           />
         ))}
       </GridContainer>
@@ -21,7 +20,7 @@ const DetailingGrid = ({ services }) => {
 
 export default DetailingGrid;
 
-// Стили для заголовка и сетки
+// Стили для заголовка и сетки (адаптированы под новую логику)
 const DetailingHeader = styled.h1`
   margin: 40px auto 10px auto;
   text-align: center;
@@ -34,19 +33,19 @@ const DetailingHeader = styled.h1`
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 310px);
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   justify-content: center;
   gap: 30px;
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 
-  @media (max-width: 1000px) {
-    grid-template-columns: 470px;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 480px) {
     grid-template-columns: 1fr;
-    padding: 20px 10px;
+    padding: 20px 50px;
   }
 `;

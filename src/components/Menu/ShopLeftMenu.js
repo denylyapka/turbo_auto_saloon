@@ -96,7 +96,7 @@ const ShopLeftMenu = ({ iconName, onClose }) => {
         <SVGButtons 
           svg={<SvgIconsLogo iconName={"logo"} />} 
           link="/"
-          title="Наш YouTube"
+          title="Мы"
           className="social-button"
         />
       </LogoContainer>

@@ -1,20 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const DetailingCard = ({ imageUrl, title }) => {
+const DetailingCard = ({ service }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/detailing/${service.index}/view`);
+  };
+
   return (
-    <CardContainer>
+    <CardContainer onClick={handleCardClick}>
       <ImageWrapper>
-        <ServiceImage src={imageUrl} alt={title} />
+        <ServiceImage src={service.imageUrl} alt={service.title} />
       </ImageWrapper>
-      <Title>{title}</Title>
+      <Title>{service.title}</Title>
     </CardContainer>
   );
 };
 
 export default DetailingCard;
 
-// Стили компонента
+// Стили компонента (оставлены без изменений)
 const CardContainer = styled.div`
   min-width: 300px;  
   max-width: 310px;
@@ -24,6 +31,7 @@ const CardContainer = styled.div`
   border-radius: 0;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);

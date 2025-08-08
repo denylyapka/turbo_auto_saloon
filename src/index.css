@@ -1,13 +1,18 @@
+/* Основные стили для body с Gilroy */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Стили для code-элементов (можно оставить как есть или тоже заменить на Gilroy) */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Дополнительно: если хотите применить Gilroy для всех текстовых элементов */
+h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select {
+  font-family: 'Gilroy', sans-serif;
 }
