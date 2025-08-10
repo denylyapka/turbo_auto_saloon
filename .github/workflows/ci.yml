@@ -31,11 +31,45 @@ jobs:
     - name: Entering to dir
       run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
 
-    - name: Pulling updates
+    - name: Force sync frontend_shop branch
       run: |
-        git fetch origin
-        git reset --hard origin/frontend_shop  # Полная перезапись локальной ветки
-
+        # Настройка Git
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        
+        # Проверка существования удаленной ветки
+        if ! git ls-remote --exit-code --heads origin refs/heads/frontend_shop; then
+          echo "::error::Remote branch frontend_shop not found!"
+          exit 1
+        fi
+    
+        # Синхронизация
+        echo "Fetching latest changes..."
+        git fetch origin frontend_shop --force
+        
+        # Проверка текущей ветки
+        CURRENT_BRANCH=$(git branch --show-current)
+        if [ "$CURRENT_BRANCH" != "frontend_shop" ]; then
+          echo "Creating local frontend_shop branch..."
+          git checkout -B frontend_shop origin/frontend_shop --force
+        else
+          echo "Resetting existing frontend_shop branch..."
+          git reset --hard origin/frontend_shop
+        fi
+        
+        # Очистка неотслеживаемых файлов
+        git clean -fd
+        
+        # Проверка результата
+        echo "=== Sync result ==="
+        git status --short --branch
+        git log -1 --oneline
+        
+        # Проверка расхождений
+        if ! git diff --exit-code HEAD origin/frontend_shop; then
+          echo "::warning::Local and remote branches still differ!"
+        fi
+    
     - name: Stopping containers
       run: "docker ps -q | xargs -r docker kill"
       
