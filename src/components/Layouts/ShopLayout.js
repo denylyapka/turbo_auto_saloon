@@ -103,8 +103,6 @@ const DefaultLayout = ({ children }) => {
     setMenuOpen(!menuOpen);
   };
 
-  console.log("говно")
-
   return (
     <LayoutContainer>
       <HeaderWrapper>

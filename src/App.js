@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainLayout from './components/Layouts/MainLayout';
+import MainLayout from './components/Layouts/MainLayout/MainLayout';
 import ServicesPage from './pages/ServicesPage';
 import DetailingPage from './pages/DetailingPage';
 import { ShopMainPage, ShopPartsPage, ShopChemistryPage } from './pages/ShopPage';
