@@ -7,26 +7,21 @@ on:
     branches: [ frontend_shop ]
 
 jobs:
-  build-and-test:
+  init:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        
-    - name: Install dependencies
-      run: npm install
-            
-    - name: Build production bundle
-      run: npm run build
+    - name: Say Hello
+      run: echo "Start deploy"
+      
+    - name: Show date
+      run: date
 
   deploy-to-prod:
-    needs: build-and-test
+    needs: init
     runs-on: ubuntu-latest
     
     steps:
