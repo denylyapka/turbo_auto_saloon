@@ -29,7 +29,7 @@ jobs:
       run: "pwd"
 
     - name: Entering to dir
-      run: "cd /home/turbo-shop_frontend"
+      run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
 
     - name: Pulling updates
       run: "git pull"
