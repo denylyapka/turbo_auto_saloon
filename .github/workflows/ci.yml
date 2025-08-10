@@ -35,7 +35,7 @@ jobs:
       run: "git pull"
 
     - name: Stopping containers
-      run: "docker stop $(docker ps -q)"
+      run: "docker kill $(docker ps -q)"
 
     - name: Building new image
       run: "docker buildx build --platform linux/amd64 -t my-react-app --load ."
