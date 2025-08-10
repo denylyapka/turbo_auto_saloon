@@ -42,6 +42,3 @@ jobs:
 
     - name: Starting container
       run: "docker run -p 3000:3000 -d my-react-app"
-
-    - name: Cleaning up
-      run: "docker image prune -f"
