@@ -1,47 +1,28 @@
-name: CI/CD for React Shop Frontend
+name: Deploy to Server on push to frontend_shop
 
 on:
   push:
-    branches: [ frontend_shop ]
-  pull_request:
-    branches: [ frontend_shop ]
+    branches: [ "frontend_shop" ]
 
 jobs:
-  deploy-to-prod:
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      
-    - name: Install SSHpass
+
+    - name: Install SSH key
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Connect to server and run commands
       run: |
-        sudo apt-get update
-        sudo apt-get install -y sshpass
-        
-    - name: Execute deployment via SSH (password)
-      env:
-        SSHPASS: ${{ secrets.SSH_PASSWORD }}
-      run: |
-        sshpass -e ssh -o StrictHostKeyChecking=no root@${{ secrets.SSH_HOST }} << 'EOF'
-          echo "Entering project directory..."
-          cd /home/turbo-shop_frontend || exit 1
-          
-          echo "Stopping containers..."
-          docker stop $(docker ps -q) || echo "No containers running"
-          
-          echo "Building new image..."
-          docker buildx build --platform linux/amd64 -t my-react-app --load . || exit 1
-          
-          echo "Starting container..."
-          docker run -p 3000:3000 -d my-react-app || exit 1
-          
-          echo "Cleaning up..."
-          docker image prune -f
-          echo "Deployment successful!"
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+        cd /path/to/your/project
+        git pull origin frontend_shop
+        npm install
+        npm run build
+        # Другие команды которые нужно выполнить на сервере
         EOF
-          
-    - name: Verify deployment
-      run: |
-        echo "Deployment completed at $(date)"
-        echo "App available at: http://${{ secrets.SSH_HOST }}:3000"
