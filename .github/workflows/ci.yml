@@ -1,3 +1,83 @@
+# name: Deploy to Server
+
+# on:
+#   push:
+#     branches: [ "frontend_shop" ]
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+
+#     - name: Install SSH key
+#       uses: webfactory/ssh-agent@v0.7.0
+#       with:
+#         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+#     - name: Test SSH connection
+#       run: |
+#         ssh -v -o StrictHostKeyChecking=no \
+#         ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+#         "echo 'Success!'; whoami; pwd"
+    
+#     - name: Connect
+#       run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+
+#     - name: Where I am
+#       run: "pwd"
+
+#     - name: Entering to dir
+#       run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
+
+#     - name: Force sync frontend_shop branch
+#       run: |
+#         # Настройка Git
+#         git config --global user.name "GitHub Actions"
+#         git config --global user.email "actions@github.com"
+        
+#         # Проверка существования удаленной ветки
+#         if ! git ls-remote --exit-code --heads origin refs/heads/frontend_shop; then
+#           echo "::error::Remote branch frontend_shop not found!"
+#           exit 1
+#         fi
+    
+#         # Синхронизация
+#         echo "Fetching latest changes..."
+#         git fetch origin frontend_shop --force
+        
+#         # Проверка текущей ветки
+#         CURRENT_BRANCH=$(git branch --show-current)
+#         if [ "$CURRENT_BRANCH" != "frontend_shop" ]; then
+#           echo "Creating local frontend_shop branch..."
+#           git checkout -B frontend_shop origin/frontend_shop --force
+#         else
+#           echo "Resetting existing frontend_shop branch..."
+#           git reset --hard origin/frontend_shop
+#         fi
+        
+#         # Очистка неотслеживаемых файлов
+#         git clean -fd
+        
+#         # Проверка результата
+#         echo "=== Sync result ==="
+#         git status --short --branch
+#         git log -1 --oneline
+        
+#         # Проверка расхождений
+#         if ! git diff --exit-code HEAD origin/frontend_shop; then
+#           echo "::warning::Local and remote branches still differ!"
+#         fi
+    
+#     - name: Stopping containers
+#       run: "docker ps -q | xargs -r docker kill"
+      
+#     - name: Building new image
+#       run: "docker buildx build --platform linux/amd64 -t my-react-app --load ."
+
+#     - name: Starting container
+#       run: "docker run -p 3000:3000 -d my-react-app"
 name: Deploy to Server
 
 on:
@@ -11,70 +91,49 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        ref: frontend_shop
+        fetch-depth: 0  # Полная история коммитов
+
+    - name: Configure Git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/denylyapka/turbo_auto_saloon.git
+
+    - name: Force sync branch
+      run: |
+        git fetch origin frontend_shop --force
+        git reset --hard origin/frontend_shop
+        git clean -fd
+        echo "=== Current status ==="
+        git status --short --branch
+        git log -1 --oneline
 
     - name: Install SSH key
       uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-    - name: Test SSH connection
+
+    - name: Prepare deployment package
       run: |
-        ssh -v -o StrictHostKeyChecking=no \
-        ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-        "echo 'Success!'; whoami; pwd"
-    
-    - name: Connect
-      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+        tar -czvf deploy.tar.gz .
+        ls -lh deploy.tar.gz
 
-    - name: Where I am
-      run: "pwd"
-
-    - name: Entering to dir
-      run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
-
-    - name: Force sync frontend_shop branch
+    - name: Deploy to server
       run: |
-        # Настройка Git
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+        ssh -o StrictHostKeyChecking=no \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          "mkdir -p ~/deploy && rm -rf ~/deploy/*"
         
-        # Проверка существования удаленной ветки
-        if ! git ls-remote --exit-code --heads origin refs/heads/frontend_shop; then
-          echo "::error::Remote branch frontend_shop not found!"
-          exit 1
-        fi
-    
-        # Синхронизация
-        echo "Fetching latest changes..."
-        git fetch origin frontend_shop --force
+        scp -o StrictHostKeyChecking=no \
+          deploy.tar.gz \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deploy/
         
-        # Проверка текущей ветки
-        CURRENT_BRANCH=$(git branch --show-current)
-        if [ "$CURRENT_BRANCH" != "frontend_shop" ]; then
-          echo "Creating local frontend_shop branch..."
-          git checkout -B frontend_shop origin/frontend_shop --force
-        else
-          echo "Resetting existing frontend_shop branch..."
-          git reset --hard origin/frontend_shop
-        fi
-        
-        # Очистка неотслеживаемых файлов
-        git clean -fd
-        
-        # Проверка результата
-        echo "=== Sync result ==="
-        git status --short --branch
-        git log -1 --oneline
-        
-        # Проверка расхождений
-        if ! git diff --exit-code HEAD origin/frontend_shop; then
-          echo "::warning::Local and remote branches still differ!"
-        fi
-    
-    - name: Stopping containers
-      run: "docker ps -q | xargs -r docker kill"
-      
-    - name: Building new image
-      run: "docker buildx build --platform linux/amd64 -t my-react-app --load ."
-
-    - name: Starting container
-      run: "docker run -p 3000:3000 -d my-react-app"
+        ssh -o StrictHostKeyChecking=no \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          "cd ~/deploy && \
+           tar -xzvf deploy.tar.gz && \
+           docker ps -q | xargs -r docker kill && \
+           docker buildx build --platform linux/amd64 -t my-react-app --load . && \
+           docker run -p 3000:3000 -d my-react-app"
