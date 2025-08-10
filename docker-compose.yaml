@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: turbo-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - /app/node_modules  # Изолируем node_modules от хоста
+    networks:
+      - frontend-network
+    restart: unless-stopped
+
+networks:
+  frontend-network:
+    driver: bridge
