@@ -28,7 +28,7 @@ jobs:
              git pull origin frontend_shop || exit 1 && \
              
              echo 'Stopping containers...' && \
-             docker stop $(docker ps -q) || echo 'No containers running' && \
+             docker stop \$(docker ps -q) || echo 'No containers running' && \
              
              echo 'Building new image...' && \
              docker buildx build --platform linux/amd64 -t my-react-app --load . || exit 1 && \
