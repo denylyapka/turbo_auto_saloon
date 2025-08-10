@@ -185,7 +185,7 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
   const navItems = [
     { name: 'Детейлинг', category: 'detailing' },
     { name: 'Услуги', category: 'services' },
-    { name: 'Магазин ⛔!', category: 'shop' },
+    { name: 'Магазин ⛔', category: 'shop' },
     { name: 'Подбор авто ⛔', category: 'selection' }
   ];
 
