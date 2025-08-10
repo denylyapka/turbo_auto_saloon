@@ -8,17 +8,17 @@ on:
 
 jobs:
   init:
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-latest    
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Say Hello
-      run: echo "Start deploy"
-      
-    - name: Show date
-      run: date
+    - name: Verify secrets
+      run: |
+        if [ -z "${{ secrets.SSH_HOST }}" ]; then echo "::error::SSH_HOST is missing"; exit 1; fi
+        if [ -z "${{ secrets.SSH_USERNAME }}" ]; then echo "::error::SSH_USERNAME is missing"; exit 1; fi
+        if [ -z "${{ secrets.SSH_KEY }}" ]; then echo "::warning::SSH_KEY is missing, will try password auth"; fi
+        if [ -z "${{ secrets.SSH_PASSWORD }}" ]; then echo "::warning::SSH_PASSWORD is missing"; fi
 
   deploy-to-prod:
     needs: init
@@ -28,27 +28,51 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: SSH and deploy
+    - name: Setup SSH connection
+      id: ssh_connect
       uses: appleboy/ssh-action@master
+      continue-on-error: true
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
+          echo "SSH key authentication successful"
+          exit 0
+
+    - name: Fallback to password auth
+      if: steps.ssh_connect.outcome == 'failure'
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        script: |
+          echo "Password authentication successful"
+          exit 0
+
+    - name: Execute deployment
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ steps.ssh_connect.outcome == 'success' && secrets.SSH_KEY || '' }}
+        password: ${{ steps.ssh_connect.outcome == 'failure' && secrets.SSH_PASSWORD || '' }}
+        script: |
           echo "Entering to project directory"
-          cd /home/turbo-shop_frontend
+          cd /home/turbo-shop_frontend || { echo "Directory not found"; exit 1; }
           
           echo "Stopping running container"
           CONTAINER_ID=$(docker ps -q)
-          if [ ! -z "$CONTAINER_ID" ]; then
-            docker kill $CONTAINER_ID
+          if [ -n "$CONTAINER_ID" ]; then
+            docker kill $CONTAINER_ID || echo "No containers to stop"
           fi
           
           echo "Building new Docker image"
-          docker buildx build --platform linux/amd64 -t my-react-app --load .
+          docker buildx build --platform linux/amd64 -t my-react-app --load . || { echo "Build failed"; exit 1; }
           
           echo "Starting new container"
-          docker run -p 3000:3000 -d my-react-app
+          docker run -p 3000:3000 -d my-react-app || { echo "Container start failed"; exit 1; }
           
           echo "Cleaning up old images"
           docker image prune -f
