@@ -6,7 +6,7 @@ import styled, { css, keyframes } from 'styled-components';
 export const slideAnimation = keyframes`
   0% { transform: translateX(0); opacity: 0; }
   5% { transform: translateX(0); opacity: 1; }
-  98% { transform: translateX(-20%); opacity: 1; }
+  96% { transform: translateX(-10%); opacity: 1; }
   100% { opacity: 0; }
 `;
 
@@ -74,7 +74,8 @@ export const NavButton = styled.button`
     background: white;
     transition: all 0.3s ease;
     ${({ $active, $isMobile }) => $active && $isMobile && css`
-      animation: ${css`${underlineAnimation}`} 10s linear forwards;
+      animation: ${css`${underlineAnimation}`} 5s linear forwards;
+      animation-delay: 0.1s;
     `}
   }
 
@@ -126,7 +127,8 @@ export const FullscreenCarousel = styled.div`
     height: 100%;
     object-fit: cover;
     ${({ $isMobile }) => $isMobile && css`
-      animation: ${css`${slideAnimation}`} 10s linear infinite;
+      animation: ${css`${slideAnimation}`} 5s linear infinite;
+      animation-delay: 1s;
     `}
     ${({ $isMobile }) => !$isMobile && css`
       width: 100%;
