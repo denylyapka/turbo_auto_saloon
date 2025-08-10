@@ -2,9 +2,9 @@ name: CI for project
 
 on:
   push:
-    branches: [ main ]
+    branches: [ frontend_shop ]
   pull_request:
-    branches: [ main ]
+    branches: [ frontend_shop ]
 
 jobs:
   hello-world:
