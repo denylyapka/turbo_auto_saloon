@@ -25,9 +25,6 @@ jobs:
     - name: Connect
       run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
-    - name: Where I am
-      run: "pwd"
-
     - name: Entering to dir
       run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
 
