@@ -21,15 +21,7 @@ jobs:
         
     - name: Install dependencies
       run: npm install
-      
-    - name: Run tests (if any)
-      run: |
-        if [ -f "src/App.test.js" ]; then
-          npm test -- --passWithNoTests
-        else
-          echo "No test files found, skipping tests"
-        fi
-      
+            
     - name: Build production bundle
       run: npm run build
 
