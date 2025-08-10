@@ -22,20 +22,13 @@ jobs:
         ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
         "echo 'Success!'; whoami; pwd"
     
-    - name: Connect
-      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-
-    - name: Entering to dir
-      run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
-
-    - name: Force sync frontend_shop branch
-      run: "git pull origin frontend_shop"
-      
-    - name: Stopping containers
-      run: "docker ps -q | xargs -r docker kill"
-      
-    # - name: Building new image
-    #   run: "docker buildx build --platform linux/amd64 -t my-react-app --load ."
-
-    # - name: Starting container
-    #   run: "docker run -p 3000:3000 -d my-react-app"
+    - name: Connect, deploy, build and start
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon
+          git fetch origin frontend_shop
+          git reset --hard origin/frontend_shop
+          docker ps -q | xargs -r docker kill
+          docker buildx build --platform linux/amd64 -t my-react-app --load .
+          docker run -p 3000:3000 -d my-react-app
+        EOF
