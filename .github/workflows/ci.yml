@@ -7,77 +7,41 @@ on:
     branches: [ frontend_shop ]
 
 jobs:
-  init:
-    runs-on: ubuntu-latest    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Verify secrets
-      run: |
-        if [ -z "${{ secrets.SSH_HOST }}" ]; then echo "::error::SSH_HOST is missing"; exit 1; fi
-        if [ -z "${{ secrets.SSH_USERNAME }}" ]; then echo "::error::SSH_USERNAME is missing"; exit 1; fi
-        if [ -z "${{ secrets.SSH_KEY }}" ]; then echo "::warning::SSH_KEY is missing, will try password auth"; fi
-        if [ -z "${{ secrets.SSH_PASSWORD }}" ]; then echo "::warning::SSH_PASSWORD is missing"; fi
-
   deploy-to-prod:
-    needs: init
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Setup SSH connection
-      id: ssh_connect
-      uses: appleboy/ssh-action@master
-      continue-on-error: true
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        script: |
-          echo "SSH key authentication successful"
-          exit 0
-
-    - name: Fallback to password auth
-      if: steps.ssh_connect.outcome == 'failure'
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        script: |
-          echo "Password authentication successful"
-          exit 0
-
-    - name: Execute deployment
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ steps.ssh_connect.outcome == 'success' && secrets.SSH_KEY || '' }}
-        password: ${{ steps.ssh_connect.outcome == 'failure' && secrets.SSH_PASSWORD || '' }}
-        script: |
-          echo "Entering to project directory"
-          cd /home/turbo-shop_frontend || { echo "Directory not found"; exit 1; }
+    - name: Install SSHpass
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y sshpass
+        
+    - name: Execute deployment via SSH (password)
+      env:
+        SSHPASS: ${{ secrets.SSH_PASSWORD }}
+      run: |
+        sshpass -e ssh -o StrictHostKeyChecking=no root@${{ secrets.SSH_HOST }} << 'EOF'
+          echo "Entering project directory..."
+          cd /home/turbo-shop_frontend || exit 1
           
-          echo "Stopping running container"
-          CONTAINER_ID=$(docker ps -q)
-          if [ -n "$CONTAINER_ID" ]; then
-            docker kill $CONTAINER_ID || echo "No containers to stop"
-          fi
+          echo "Stopping containers..."
+          docker stop $(docker ps -q) || echo "No containers running"
           
-          echo "Building new Docker image"
-          docker buildx build --platform linux/amd64 -t my-react-app --load . || { echo "Build failed"; exit 1; }
+          echo "Building new image..."
+          docker buildx build --platform linux/amd64 -t my-react-app --load . || exit 1
           
-          echo "Starting new container"
-          docker run -p 3000:3000 -d my-react-app || { echo "Container start failed"; exit 1; }
+          echo "Starting container..."
+          docker run -p 3000:3000 -d my-react-app || exit 1
           
-          echo "Cleaning up old images"
+          echo "Cleaning up..."
           docker image prune -f
+          echo "Deployment successful!"
+        EOF
           
     - name: Verify deployment
       run: |
         echo "Deployment completed at $(date)"
-        echo "Application should be available at http://${{ secrets.SSH_HOST }}:3000"
+        echo "App available at: http://${{ secrets.SSH_HOST }}:3000"
