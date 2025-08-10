@@ -185,8 +185,8 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
   const navItems = [
     { name: 'Детейлинг', category: 'detailing' },
     { name: 'Услуги', category: 'services' },
-    { name: 'Магазин', category: 'shop' },
-    { name: 'Подбор авто', category: 'selection' }
+    { name: 'Магазин ⛔', category: 'shop' },
+    { name: 'Подбор авто ⛔', category: 'selection' }
   ];
 
   const handleCategoryClick = (category) => {
@@ -246,7 +246,6 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
             key={index} 
             $isMobile={isMobile}
             onMouseEnter={() => handleCategoryHover(item.category)}
-            onMouseLeave={handleCategoryLeave}
           >
             <NavButton 
               $isMobile={isMobile}
