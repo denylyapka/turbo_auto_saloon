@@ -25,7 +25,7 @@ jobs:
     - name: Connect, deploy, build and start
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-          cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon
+          cd /home/turbo-shop_frontend
           git fetch origin frontend_shop
           git reset --hard origin/frontend_shop
           docker ps -q | xargs -r docker kill
