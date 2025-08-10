@@ -32,7 +32,9 @@ jobs:
       run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
 
     - name: Pulling updates
-      run: "git pull origin frontend_shop"
+      run: |
+        git fetch origin
+        git reset --hard origin/frontend_shop  # Полная перезапись локальной ветки
 
     - name: Stopping containers
       run: "docker ps -q | xargs -r docker kill"
