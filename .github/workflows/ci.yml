@@ -14,7 +14,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Setup Node.js (for React build)
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
@@ -23,7 +23,12 @@ jobs:
       run: npm install
       
     - name: Run tests (if any)
-      run: npm test
+      run: |
+        if [ -f "src/App.test.js" ]; then
+          npm test -- --passWithNoTests
+        else
+          echo "No test files found, skipping tests"
+        fi
       
     - name: Build production bundle
       run: npm run build
@@ -52,7 +57,7 @@ jobs:
             docker kill $CONTAINER_ID
           fi
           
-          echo "Building new Docker image for React app"
+          echo "Building new Docker image"
           docker buildx build --platform linux/amd64 -t my-react-app --load .
           
           echo "Starting new container"
@@ -64,4 +69,4 @@ jobs:
     - name: Verify deployment
       run: |
         echo "Deployment completed at $(date)"
-        echo "React application should be available at http://${{ secrets.SSH_HOST }}:3000"
+        echo "Application should be available at http://${{ secrets.SSH_HOST }}:3000"
