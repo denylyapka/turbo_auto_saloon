@@ -26,45 +26,19 @@ jobs:
       run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
     - name: Entering to dir
-      run: "echo 'Entering to dir'"
+      run: "cd /home/turbo-shop_frontend"
 
     - name: Pulling updates
-      run: "echo 'Pulling updates'"
+      run: "git pull"
 
     - name: Stopping containers
-      run: "echo 'Stopping containers'"
+      run: "docker stop $(docker ps -q)"
 
     - name: Building new image
-      run: "echo 'Building new image'"
+      run: "docker buildx build --platform linux/amd64 -t my-react-app --load ."
 
     - name: Starting container
-      run: "echo 'Starting container'"
+      run: "docker run -p 3000:3000 -d my-react-app"
 
     - name: Cleaning up
-      run: "echo 'Cleaning up'"
-
-    
-
-    # - name: Connect and deploy
-    #   run: |
-    #     ssh -o StrictHostKeyChecking=no \
-    #         ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-    #         "echo 'Entering project directory...' && \
-    #          cd /home/turbo-shop_frontend || exit 1 && \
-             
-    #          echo 'Pulling latest changes...' && \
-    #          git pull origin frontend_shop || exit 1 && \
-             
-    #          echo 'Stopping containers...' && \
-    #          docker stop \$(docker ps -q) || echo 'No containers running' && \
-             
-    #          echo 'Building new image...' && \
-    #          docker buildx build --platform linux/amd64 -t my-react-app --load . || exit 1 && \
-             
-    #          echo 'Starting container...' && \
-    #          docker run -p 3000:3000 -d my-react-app || exit 1 && \
-             
-    #          echo 'Cleaning up...' && \
-    #          docker image prune -f && \
-             
-    #          echo 'Deployment successful!'"
+      run: "docker image prune -f"
