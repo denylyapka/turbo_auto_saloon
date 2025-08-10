@@ -32,7 +32,7 @@ jobs:
       run: "cd /home/runner/work/turbo_auto_saloon/turbo_auto_saloon"
 
     - name: Pulling updates
-      run: "git pull"
+      run: "git pull origin frontend_shop"
 
     - name: Stopping containers
       run: "docker ps -q | xargs -r docker kill"
