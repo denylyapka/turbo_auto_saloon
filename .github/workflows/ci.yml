@@ -34,8 +34,8 @@ jobs:
     - name: Stopping containers
       run: "docker ps -q | xargs -r docker kill"
       
-    - name: Building new image
-      run: "docker buildx build --platform linux/amd64 -t my-react-app --load ."
+    # - name: Building new image
+    #   run: "docker buildx build --platform linux/amd64 -t my-react-app --load ."
 
-    - name: Starting container
-      run: "docker run -p 3000:3000 -d my-react-app"
+    # - name: Starting container
+    #   run: "docker run -p 3000:3000 -d my-react-app"
