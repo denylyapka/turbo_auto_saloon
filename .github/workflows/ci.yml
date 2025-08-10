@@ -21,27 +21,50 @@ jobs:
         ssh -v -o StrictHostKeyChecking=no \
         ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
         "echo 'Success!'; whoami; pwd"
+    
+    - name: Connect
+      run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
-    - name: Connect and deploy
-      run: |
-        ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-            "echo 'Entering project directory...' && \
-             cd /home/turbo-shop_frontend || exit 1 && \
+    - name: Entering to dir
+      run: "echo 'Entering to dir'"
+
+    - name: Pulling updates
+      run: "echo 'Pulling updates'"
+
+    - name: Stopping containers
+      run: "echo 'Stopping containers'"
+
+    - name: Building new image
+      run: "echo 'Building new image'"
+
+    - name: Starting container
+      run: "echo 'Starting container'"
+
+    - name: Cleaning up
+      run: "echo 'Cleaning up'"
+
+    
+
+    # - name: Connect and deploy
+    #   run: |
+    #     ssh -o StrictHostKeyChecking=no \
+    #         ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+    #         "echo 'Entering project directory...' && \
+    #          cd /home/turbo-shop_frontend || exit 1 && \
              
-             echo 'Pulling latest changes...' && \
-             git pull origin frontend_shop || exit 1 && \
+    #          echo 'Pulling latest changes...' && \
+    #          git pull origin frontend_shop || exit 1 && \
              
-             echo 'Stopping containers...' && \
-             docker stop \$(docker ps -q) || echo 'No containers running' && \
+    #          echo 'Stopping containers...' && \
+    #          docker stop \$(docker ps -q) || echo 'No containers running' && \
              
-             echo 'Building new image...' && \
-             docker buildx build --platform linux/amd64 -t my-react-app --load . || exit 1 && \
+    #          echo 'Building new image...' && \
+    #          docker buildx build --platform linux/amd64 -t my-react-app --load . || exit 1 && \
              
-             echo 'Starting container...' && \
-             docker run -p 3000:3000 -d my-react-app || exit 1 && \
+    #          echo 'Starting container...' && \
+    #          docker run -p 3000:3000 -d my-react-app || exit 1 && \
              
-             echo 'Cleaning up...' && \
-             docker image prune -f && \
+    #          echo 'Cleaning up...' && \
+    #          docker image prune -f && \
              
-             echo 'Deployment successful!'"
+    #          echo 'Deployment successful!'"
