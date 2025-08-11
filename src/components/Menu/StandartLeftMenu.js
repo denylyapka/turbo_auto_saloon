@@ -29,12 +29,12 @@ const MENU_ITEMS = {
     ],
     mainLink: '/services'
   },
-  shop: {
-    mainLink: '/shop'
-  },
-  selection: {
-    mainLink: '/selection'
-  }
+  // shop: {
+  //   mainLink: '/shop'
+  // },
+  // selection: {
+  //   mainLink: '/selection'
+  // }
 };
 
 const menuItems = [
@@ -48,16 +48,16 @@ const menuItems = [
     category: "services",
     subItems: MENU_ITEMS.services.items
   },
-  {
-    title: "Магазин",
-    category: "shop",
-    subItems: MENU_ITEMS.shop.items
-  },
-  {
-    title: "Подбор авто",
-    category: "selection",
-    subItems: null
-  }
+  // {
+  //   title: "Магазин",
+  //   category: "shop",
+  //   subItems: MENU_ITEMS.shop.items
+  // },
+  // {
+  //   title: "Подбор авто",
+  //   category: "selection",
+  //   subItems: null
+  // }
 ];
 
 const StandartLeftMenu = ({ iconName, onClose }) => {

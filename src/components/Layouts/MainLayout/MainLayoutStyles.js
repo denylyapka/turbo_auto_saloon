@@ -135,3 +135,93 @@ export const FullscreenCarousel = styled.div`
     `}
   }
 `;
+
+
+// Стилизованные компоненты
+export const HeaderContainer = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: ${({ $isMobile }) => $isMobile ? '100vh' : '80px'};
+  background: linear-gradient(black, #00000020);
+  display: flex;
+  flex-direction: ${({ $isMobile }) => $isMobile ? 'column' : 'row'};
+  justify-content: space-between;
+  align-items: center;
+  padding: ${({ $isMobile }) => $isMobile ? '20px' : '0 30px'};
+  z-index: 2;
+  box-sizing: border-box;
+  overflow: ${({ $isMobile }) => $isMobile ? 'hidden' : 'visible'};
+`;
+
+export const LogoContainer = styled.div`
+  margin-bottom: ${({ $isMobile }) => $isMobile ? '20px' : 0};
+  margin-left: ${({ $isMobile }) => $isMobile ? "30px" : '20px'};
+  margin-right: ${({ $isMobile }) => $isMobile ? "0" : '-60px'};
+  align-self: ${({ $isMobile }) => $isMobile ? 'flex-start' : 'center'};
+`;
+
+export const NavContainer = styled.nav`
+  display: flex;
+  gap: ${({ $isMobile }) => $isMobile ? '15px' : '40px'};
+  flex-direction: ${({ $isMobile }) => $isMobile ? 'column' : 'row'};
+  align-items: center;
+  margin-bottom: ${({ $isMobile }) => $isMobile ? '20px' : 0};
+  width: ${({ $isMobile }) => $isMobile ? '100%' : 'auto'};
+`;
+
+export const IconsContainer = styled.div`
+  display: flex;
+  gap: ${({ $isMobile }) => $isMobile ? '30px' : '40px'};
+  justify-content: ${({ $isMobile }) => $isMobile ? 'center' : 'flex-end'};
+  width: ${({ $isMobile }) => $isMobile ? '100%' : 'auto'};
+`;
+
+export const MenuListContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: ${({ $position }) => $position === 'left' ? '0' : '100%'};
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 
+    transform 0.3s ease,
+    visibility 0s linear ${({ $isVisible }) => $isVisible ? '0s' : '0.5s'};
+  padding: 20px;
+  box-sizing: border-box;
+  visibility: ${({ $isVisible }) => $isVisible ? 'visible' : 'hidden'};
+
+  /* Основной список (left) */
+  ${({ $position, $isVisible }) => $position === 'left' && `
+    transform: ${$isVisible ? 'translateX(0)' : 'translateX(-100%)'};
+  `}
+
+  /* Подсписок (right) */
+  ${({ $position, $isVisible }) => $position === 'right' && `
+    transform: ${$isVisible ? 'translateX(-100%)' : 'translateX(0)'};
+  `}
+`;
+
+export const BackButton = styled.button`
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const MenuListsWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+`;
