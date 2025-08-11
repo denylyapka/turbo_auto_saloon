@@ -6,6 +6,7 @@ import { BookButtonWithModal } from 'components/Buttons/ServiceButton';
 import { useParams } from 'react-router-dom';
 import { SERVICES_DATA } from './ServicesPage';
 import { DETAILING_DATA } from './DetailingPage';
+import Footer from '../components/Menu/StandartFooterMenu';
 
 // Общие стили
 const PageContainer = styled.div`
@@ -52,7 +53,9 @@ export const AboutServicePage = () => {
   const { id } = useParams();
   const service = SERVICES_DATA.find(item => item.index === id) || SERVICES_DATA[0];
   
-  return <ServicePageTemplate serviceData={{
+  return (
+    <>
+      <ServicePageTemplate serviceData={{
     ...service,
     images: [
       {"link": 'https://wallpapers.com/images/featured/garage-pictures-6nzenybxfuxbfaar.jpg', "color": "white"},
@@ -60,14 +63,20 @@ export const AboutServicePage = () => {
       {"link": 'https://www.sportcar-center.com/files/391515/Service_vesna_h.jpg', "color": "white"},
       {"link": 'https://findesk.ru/upload/iblock/815/8156a7adf565b08d8266330e17f095a2.jpg', "color": "white"}
     ]
-  }} />;
+  }} />
+      <Footer />
+    </>
+  );
 };
 
 export const AboutDetailingPage = () => {
   const { id } = useParams();
   const service = DETAILING_DATA.find(item => item.index === id) || DETAILING_DATA[0];
-  
-  return <ServicePageTemplate serviceData={{
+  console.log("service:", service);
+
+  return (
+    <>
+      <ServicePageTemplate serviceData={{
     ...service,
     images: [
       {"link": 'https://wallpapers.com/images/featured/garage-pictures-6nzenybxfuxbfaar.jpg', "color": "white"},
@@ -75,5 +84,8 @@ export const AboutDetailingPage = () => {
       {"link": 'https://www.sportcar-center.com/files/391515/Service_vesna_h.jpg', "color": "white"},
       {"link": 'https://findesk.ru/upload/iblock/815/8156a7adf565b08d8266330e17f095a2.jpg', "color": "white"}
     ]
-  }} />;
+  }} />
+      <Footer />
+    </>
+  );
 };
