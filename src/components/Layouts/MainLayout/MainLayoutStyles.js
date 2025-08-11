@@ -159,7 +159,7 @@ export const LogoContainer = styled.div`
   margin-bottom: ${({ $isMobile }) => $isMobile ? '20px' : 0};
   margin-left: ${({ $isMobile }) => $isMobile ? "30px" : '20px'};
   margin-right: ${({ $isMobile }) => $isMobile ? "0" : '-60px'};
-  align-self: ${({ $isMobile }) => $isMobile ? 'flex-start' : 'center'};
+  align-self: ${({ $isMobile }) => $isMobile ? 'center' : 'center'};
 `;
 
 export const NavContainer = styled.nav`
