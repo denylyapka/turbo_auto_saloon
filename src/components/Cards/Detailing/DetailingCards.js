@@ -12,7 +12,7 @@ const DetailingCard = ({ service }) => {
   return (
     <CardContainer onClick={handleCardClick}>
       <ImageWrapper>
-        <ServiceImage src={service.imageUrl} alt={service.title} />
+        <ServiceImage src={service.images[0]} alt={service.title} />
       </ImageWrapper>
       <Title>{service.title}</Title>
     </CardContainer>

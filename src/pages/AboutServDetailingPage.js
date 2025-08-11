@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import ServiceDescription from 'components/TextFields/HeadPar';
-import FullWidthCarousel from 'components/Carousels/Carousels';
+
+import ImageGallery from 'components/Gallery/GallerySwiper';
+
 import { BookButtonWithModal } from 'components/Buttons/ServiceButton';
 import { useParams } from 'react-router-dom';
 import { SERVICES_DATA } from './ServicesPage';
@@ -28,16 +30,17 @@ const ButtonContainer = styled.div`
 `;
 
 // Общий компонент для страниц услуг
-const ServicePageTemplate = ({ serviceData }) => {
+const ServicePageTemplate = ({ service_data }) => {
   const { id } = useParams();
   
   return (
     <PageContainer>
       <ContentWrapper>
-        <FullWidthCarousel images={serviceData.images} />
+        <ImageGallery images={service_data.images} />
         <ServiceDescription 
-          nameModule={serviceData.module}
-          nameService={serviceData.title}
+          nameModule={service_data.module}
+          nameService={service_data.title}
+          description={service_data.description}
           idService={id}
         />
         <ButtonContainer>
@@ -55,15 +58,9 @@ export const AboutServicePage = () => {
   
   return (
     <>
-      <ServicePageTemplate serviceData={{
-    ...service,
-    images: [
-      {"link": 'https://wallpapers.com/images/featured/garage-pictures-6nzenybxfuxbfaar.jpg', "color": "white"},
-      {"link": 'https://i2.wp.com/www.bobygarage.com/blog/wp-content/uploads/2019/01/shutterstock_666932353.jpeg', "color": "white"},
-      {"link": 'https://www.sportcar-center.com/files/391515/Service_vesna_h.jpg', "color": "white"},
-      {"link": 'https://findesk.ru/upload/iblock/815/8156a7adf565b08d8266330e17f095a2.jpg', "color": "white"}
-    ]
-  }} />
+      <ServicePageTemplate service_data={{
+    ...service
+    }} />
       <Footer />
     </>
   );
@@ -72,19 +69,12 @@ export const AboutServicePage = () => {
 export const AboutDetailingPage = () => {
   const { id } = useParams();
   const service = DETAILING_DATA.find(item => item.index === id) || DETAILING_DATA[0];
-  console.log("service:", service);
 
   return (
     <>
-      <ServicePageTemplate serviceData={{
-    ...service,
-    images: [
-      {"link": 'https://wallpapers.com/images/featured/garage-pictures-6nzenybxfuxbfaar.jpg', "color": "white"},
-      {"link": 'https://i2.wp.com/www.bobygarage.com/blog/wp-content/uploads/2019/01/shutterstock_666932353.jpeg', "color": "white"},
-      {"link": 'https://www.sportcar-center.com/files/391515/Service_vesna_h.jpg', "color": "white"},
-      {"link": 'https://findesk.ru/upload/iblock/815/8156a7adf565b08d8266330e17f095a2.jpg', "color": "white"}
-    ]
-  }} />
+      <ServicePageTemplate service_data={{
+    ...service
+    }} />
       <Footer />
     </>
   );

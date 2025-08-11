@@ -9,7 +9,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 100%;
   position: relative;
   z-index: 1;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -112,8 +112,6 @@ const Header = ({ onMenuToggle, isMobile, menuOpen, isShop }) => {
     setSearchValue(e.target.value);
   };
 
-  console.log("isShop", isShop)
-
   return (
     <HeaderContainer>
       <HeaderSection>
@@ -128,7 +126,7 @@ const Header = ({ onMenuToggle, isMobile, menuOpen, isShop }) => {
           <BurgerLine $menuOpen={menuOpen} />
         </BurgerButton>
 
-        {/* Поле поиска - всегда отображается, кроме случая когда меню открыто на мобильном */}
+        {/* Поле поиска - всегда отображается, кроме случая когда меню открыто на мобильном
         {(!isMobile || !menuOpen) && (
           <SearchComponent
             placeholder={isShop ? "Название, артикул, VIN" : "Поиск по сайту..."}
@@ -136,7 +134,7 @@ const Header = ({ onMenuToggle, isMobile, menuOpen, isShop }) => {
             onChange={handleSearchChange}
             width={isMobile ? "180px" : "250px"}
           />
-        )}
+        )} */}
       </HeaderSection>
 
       <HeaderSection>

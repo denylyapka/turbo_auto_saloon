@@ -4,6 +4,7 @@ body {
   font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1A1A1A;
 }
 
 /* Стили для code-элементов (можно оставить как есть или тоже заменить на Gilroy) */

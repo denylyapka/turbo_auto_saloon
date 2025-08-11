@@ -1,17 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
 
-const ServiceDescription = ({ nameModule, nameService, idService }) => {
-  const dataService = {
-    title: nameService,
-    description: 'Проснувшись однажды утром после беспокойного сна, Грегор Замза обнаружил, что он у себя в постели превратился в страшное насекомое. Лежа на панцирнотвердой спине, он видел, стоило ему приподнять голову, свой коричневый, выпуклый, разделенный дугообразными чешуйками живот, на верхушке которого еле держалось готовое вот-вот окончательно сползти одеяло. Его многочисленные, убого тонкие по сравнению с остальным телом ножки беспомощно копошились у него перед глазами. «Что со мной случилось?» – подумал он. Это не было сном. Его комната, настоящая, разве что слишком маленькая, но обычная комната, мирно покоилась в своих четырех хорошо знакомых стенах. Над столом, где были разложены распакованные образцы сукон – Замза был коммивояжером, – висел портрет, который он недавно вырезал из иллюстрированного журнала и вставил в красивую золоченую рамку. На портрете была изображена дама в меховой шляпе и боа, она сидела очень прямо и протягивала зрителю тяжелую меховую муфту, в которой целиком исчезала ее рука. Затем взгляд Грегора устремился в окно, и пасмурная погода – слышно было, как по жести подоконника стучат капли дождя – привела его и вовсе в грустное настроение. «Хорошо бы еще немного поспать и забыть всю эту чепуху», – подумал он, но это было совершенно неосуществимо, он привык спать на правом боку, а в теперешнем своемx',
-  }
+const ServiceDescription = ({ nameModule, nameService, description, idService }) => {
+  const navigate = useNavigate();
+
+  const handleModuleClick = () => {
+    // Проверяем название модуля и формируем соответствующий путь
+    let path;
+    
+    if (nameModule === 'Услуги') {
+      path = '/services';
+    } else if (nameModule === 'Детейлинг') {
+      path = '/detailing';
+    } else {
+      path = `/${nameModule.toLowerCase()}`;
+    }
+    navigate(path);
+  };
+
   return (
     <ServiceContainer>
-      <Breadcrumbs>Turbo / {nameModule} / {nameService}</Breadcrumbs>
+      <Breadcrumbs>
+        <CrumbLink to="/">Turbo</CrumbLink>
+        <Separator>/</Separator>
+        <ModuleCrumb onClick={handleModuleClick}>
+          {nameModule}
+        </ModuleCrumb>
+        <Separator>/</Separator>
+        <CurrentCrumb>{nameService}</CurrentCrumb>
+      </Breadcrumbs>
+
       <ServiceTitle>{nameService}</ServiceTitle>
-      <ServiceText>
-        {dataService.description}
+      <ServiceText style={{ whiteSpace: 'pre-line' }}>
+        {description}
       </ServiceText>
     </ServiceContainer>
   );
@@ -19,9 +41,9 @@ const ServiceDescription = ({ nameModule, nameService, idService }) => {
 
 export default ServiceDescription;
 
-// Стили
+// Стилизованные компоненты
 const ServiceContainer = styled.div`
-  max-width: 800px;
+  max-width: 600px;
   padding: 20px;
   font-family: 'Arial', sans-serif;
   font-size: 12px;
@@ -39,10 +61,44 @@ const ServiceContainer = styled.div`
 `;
 
 const Breadcrumbs = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 12px;
   color: #666;
   margin-bottom: 10px;
+`;
+
+const CrumbLink = styled(Link)`
+  color: #000000ff;
+  text-decoration: none;
+  transition: color 0.2s;
   cursor: pointer;
+
+  &:hover {
+    color: #6e6e6eff;
+    text-decoration: underline;
+  }
+`;
+
+const ModuleCrumb = styled.span`
+  color: #000000ff;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #6e6e6eff;
+    text-decoration: underline;
+  }
+`;
+
+const Separator = styled.span`
+  margin: 0 5px;
+  color: #999;
+`;
+
+const CurrentCrumb = styled.span`
+  color: #333;
+  font-weight: 500;
 `;
 
 const ServiceTitle = styled.h1`

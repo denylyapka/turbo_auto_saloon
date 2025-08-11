@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Header from 'components/Headers/HeaderService';
 import StandartLeftMenu from 'components/Menu/StandartLeftMenu';
 
+
 const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,7 +17,7 @@ const HeaderWrapper = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 80px;
   z-index: 2;
   background: #1A1A1A;
 

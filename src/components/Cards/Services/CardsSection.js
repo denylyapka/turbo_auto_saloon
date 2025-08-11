@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ServiceCard from './ServiceCards';
 
 const ServicesGrid = ({ services }) => {
+
   return (
     <div>
       <ServicesHeader>Услуги</ServicesHeader>

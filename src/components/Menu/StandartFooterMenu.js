@@ -67,7 +67,7 @@ export default Footer;
 
 // Стили компонента
 const FooterContainer = styled.footer`
-  background-color: #1A1A1A;
+background: linear-gradient(-30deg, #1A1A1A, #282828ff);
   color: #ffffff;
   padding: 40px 20px 20px;
   margin-top: 100px;

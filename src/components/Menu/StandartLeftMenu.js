@@ -8,34 +8,7 @@ import SVGButtons from 'components/Buttons/webSites';
 import { useNavigate } from 'react-router-dom';
 
 // Константы с ссылками
-const MENU_ITEMS = {
-  detailing: {
-    items: [
-      { name: 'Полировка', link: '/detailing' },
-      { name: 'Защитные покрытия', link: '/detailing' },
-      { name: 'PDR выпрямление вмятин', link: '/detailing' },
-      { name: 'Локальная окраска', link: '/detailing' },
-      { name: 'Химчистка', link: '/detailing' },
-      { name: 'Реставрация салона', link: '/detailing' }
-    ],
-    mainLink: '/detailing'
-  },
-  services: {
-    items: [
-      { name: 'Диагностика и ремонт', link: '/services' },
-      { name: 'Программный чип-тюнинг', link: '/services' },
-      { name: 'Русификация и дооснащение', link: '/services' },
-      { name: 'Тюнинг автосвета', link: '/services' }
-    ],
-    mainLink: '/services'
-  },
-  // shop: {
-  //   mainLink: '/shop'
-  // },
-  // selection: {
-  //   mainLink: '/selection'
-  // }
-};
+import { MENU_ITEMS } from '../../Сonstants/MenuItems';
 
 const menuItems = [
   {
@@ -87,6 +60,7 @@ const StandartLeftMenu = ({ iconName, onClose }) => {
   };
 
   const handleSubItemClick = (link, e) => {
+    console.log("handleSubItemClick (link):", link);
     e.preventDefault();
     navigate(link);
     if (onClose) onClose();

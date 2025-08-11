@@ -11,14 +11,13 @@ const ImageGallery = ({ images }) => {
   return (
     <SwiperContainer>
       <Swiper
+        style={{ maxHeight: '400px' }}
         modules={[Navigation, Pagination, A11y, Autoplay]}
         spaceBetween={0}
         slidesPerView={1}
-        navigation
         pagination={{ clickable: true }}
         loop={true}
-        autoplay={{ delay: 5000 }}
-        onSwiper={(swiper) => console.log(swiper)}
+        // autoplay={{ delay: 5000 }}
         onSlideChange={() => console.log('slide change')}
       >
         {images.map((img, index) => (
@@ -35,7 +34,8 @@ export default ImageGallery;
 
 // Стили
 const SwiperContainer = styled.div`
-  max-width: 1200px;
+  max-width: 100vw;
+  max-height: 401px;
   margin: 0 auto;
   
   .swiper-button-prev,
