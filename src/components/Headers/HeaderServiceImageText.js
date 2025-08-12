@@ -16,7 +16,7 @@ export default HeaderServiceIT;
 const HeaderContainer = styled.header`
   position: relative;
   width: 100%;
-  height: 400px; /* Вы можете настроить высоту по своему усмотрению */
+  height: 200px; /* Вы можете настроить высоту по своему усмотрению */
   overflow: hidden;
 `;
 
@@ -41,7 +41,7 @@ const Slogan = styled.div`
   
   @media (max-width: 768px) {
     font-size: 18px;
-    top: 20px;
+    bottom: 40px;
     right: 20px;
     max-width: 60%;
   }
@@ -49,8 +49,8 @@ const Slogan = styled.div`
   @media (max-width: 480px) {
     font-size: 16px;
     padding: 10px;
-    top: 10px;
-    right: 10px;
+    bottom: 40px;
+    right: 20px;
     max-width: 70%;
   }
 `;
