@@ -158,7 +158,7 @@ const SocialIcon = styled.a`
 
 const Divider = styled.div`
   height: 1px;
-  background-color: #333333;
+  background-color: #fff;
   margin: 40px auto 20px;
   width: 90%;
   max-width: 1200px;

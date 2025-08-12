@@ -35,7 +35,7 @@ const ModalContent = styled.div`
 const ModalTitle = styled.h2`
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #fff;
   font-size: 22px;
 
   @media (max-width: 480px) {
@@ -116,7 +116,7 @@ const FormInput = styled.input`
   &:-webkit-autofill,
   &:-webkit-autofill:hover, 
   &:-webkit-autofill:focus {
-    -webkit-text-fill-color: #333;
+    -webkit-text-fill-color: #fff;
     -webkit-box-shadow: 0 0 0px 1000px white inset;
     transition: background-color 5000s ease-in-out 0s;
   }

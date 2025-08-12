@@ -8,7 +8,7 @@ const PageContainer = styled.div`
   font-family: Arial, sans-serif;
   line-height: 1.4;
   font-size: 2;
-  color: #333;
+  color: #fff;
 
   @media (max-width: 768px) {
     padding: 20px 60px;
@@ -40,7 +40,7 @@ const Section = styled.section`
 const SectionTitle = styled.h2`
   font-size: 22px;
   margin-bottom: 15px;
-  color: #444;
+  color: #fff;
 `;
 
 const Paragraph = styled.p`

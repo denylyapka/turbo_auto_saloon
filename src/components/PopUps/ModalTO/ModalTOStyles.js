@@ -63,7 +63,7 @@ export const Sticker = styled.div`
 
 export const Head = styled.h2`
   margin: 0 0 1rem 0;
-  color: #333;
+  color: #fff;
 `;
 
 export const Par = styled.p`

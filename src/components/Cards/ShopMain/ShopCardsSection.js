@@ -101,7 +101,7 @@ const PromotionsHeader = styled.h2`
   cursor: pointer;
   font-size: 2rem;
   padding-bottom: 20px;
-  color: #333;
+  color: #fff;
   font-weight: 600;
   position: relative;
   display: inline-block;

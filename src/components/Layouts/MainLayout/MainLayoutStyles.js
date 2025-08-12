@@ -55,7 +55,7 @@ export const NavButton = styled.button`
   background: none;
   border: none;
   color: white;
-  font-size: ${({ $isMobile }) => $isMobile ? '20px' : '18px'};
+  font-size: ${({ $isMobile }) => $isMobile ? '24px' : '18px'};
   cursor: pointer;
   padding: 8px 12px;
   position: relative;

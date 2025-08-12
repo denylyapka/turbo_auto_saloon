@@ -69,19 +69,19 @@ const Breadcrumbs = styled.div`
 `;
 
 const CrumbLink = styled(Link)`
-  color: #000000ff;
+  color: #fff;
   text-decoration: none;
   transition: color 0.2s;
   cursor: pointer;
 
   &:hover {
-    color: #6e6e6eff;
+    color: #949494ff;
     text-decoration: underline;
   }
 `;
 
 const ModuleCrumb = styled.span`
-  color: #000000ff;
+  color: #fff;
   cursor: pointer;
   transition: color 0.2s;
 
@@ -97,13 +97,13 @@ const Separator = styled.span`
 `;
 
 const CurrentCrumb = styled.span`
-  color: #333;
+  color: #fff;
   font-weight: 500;
 `;
 
 const ServiceTitle = styled.h1`
   font-size: 28px;
-  color: #333;
+  color: #fff;
   margin-bottom: 20px;
   font-weight: 600;
 `;
@@ -111,6 +111,6 @@ const ServiceTitle = styled.h1`
 const ServiceText = styled.p`
   font-size: 16px;
   line-height: 1.6;
-  color: #444;
+  color: #fff;
   text-align: justify;
 `;

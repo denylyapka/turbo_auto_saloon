@@ -176,7 +176,7 @@ const MenuContainer = styled.div`
   z-index: 900;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
 const LogoContainer = styled.div`

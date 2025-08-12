@@ -45,7 +45,7 @@ const SideMenuContainer = styled.div`
     $isMobile ? `translateX(${$menuOpen ? '0' : '-100%'})` : 'translateX(0)'};
   transition: transform 0.3s ease;
   background-color: #1A1A1A;
-  overflow-y: auto;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     box-shadow: ${({ $menuOpen }) => 
@@ -57,7 +57,7 @@ const ContentWrapper = styled.main`
   flex: 1;
   padding: 0;
   margin-left: ${({ $isMobile }) => $isMobile ? '0' : '280px'};
-  background-color: #ffffff;
+  background-color: #1A1A1A;
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;

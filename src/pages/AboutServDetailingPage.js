@@ -15,6 +15,8 @@ const PageContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0;
+  background-color: #1A1A1A;
+  color: #ffffff;
 `;
 
 const ContentWrapper = styled.div`
