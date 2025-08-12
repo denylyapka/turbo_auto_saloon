@@ -19,7 +19,9 @@ export const MENU_ITEMS = {
         title: 'Полировка',
         module: 'Детейлинг',
         index: '0',
-        link: '/detailing/0/view' },
+        link: '/detailing/0/view',
+        slogan: "Эстетика и защита в каждой линии",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
       { name: 'Оклейка пленкой',
         description:
           'Оклеиваем кузов защитной или декоративной пленкой, сохраняя лакокрасочное покрытие от сколов, царапин и выгорания. Используем только качественные материалы и точную подгонку, чтобы пленка была незаметна или, наоборот, подчеркнула индивидуальность авто.\n\n' +
@@ -37,7 +39,9 @@ export const MENU_ITEMS = {
         title: 'Оклейка пленкой',
         module: 'Детейлинг',
         index: '1',
-        link: '/detailing/1/view' },
+        link: '/detailing/1/view',
+        slogan: "Слоган Оклейка пленкой",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
       { name: 'PDR выпрямление вмятин',
         description: 'Технология PDR позволяет удалить вмятины без повреждения краски, сохраняя заводское покрытие автомобиля. Быстро, аккуратно и без лишних затрат.\n\n' +
         'Что мы предлагаем:\n' +
@@ -53,7 +57,9 @@ export const MENU_ITEMS = {
         title: 'PDR выпрямление вмятин',
         module: 'Детейлинг',
         index: '2',
-        link: '/detailing/2/view' },
+        link: '/detailing/2/view',
+        slogan: "Слоган PDR выпрямление вмятин",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
       { name: 'Локальная окраска',
         description: 'Восстанавливаем повреждённые участки кузова без полной перекраски детали. Подбираем цвет с точностью до оттенка, сохраняя заводской вид автомобиля.\n\n' +
         'Что мы предлагаем:\n' +
@@ -70,7 +76,9 @@ export const MENU_ITEMS = {
         title: 'Локальная окраска',
         module: 'Детейлинг',
         index: '3',
-        link: '/detailing/3/view' },
+        link: '/detailing/3/view',
+        slogan: "Слоган Локальная окраска",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
       { name: 'Химчистка',
         description: 'Комплексная химчистка возвращает интерьеру свежий вид и устраняет неприятные запахи. Используем безопасные составы, которые не вредят тканям, коже и пластику.\n\n' +
         'Что мы предлагаем:\n' +
@@ -86,8 +94,10 @@ export const MENU_ITEMS = {
         title: 'Химчистка',
         module: 'Детейлинг',
         index: '4',
-        link: '/detailing/4/view' },
-      { name: 'Реставрации салона',
+        link: '/detailing/4/view',
+        slogan: "Слоган Химчистка",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
+      { name: 'Реставрация салона',
         description: 'Восстанавливаем элементы салона, сохраняя оригинальный стиль и материалы. Реставрация проводится максимально аккуратно, чтобы сохранить премиальный вид и тактильные ощущения.\n\n' +
         'Что мы предлагаем:\n' +
         '– Ремонт и перетяжка сидений (кожа, алькантара, ткань)\n' +
@@ -99,10 +109,12 @@ export const MENU_ITEMS = {
           'https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/restavratsia%202.jpg',
           'https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/restavratsia%203.jpg',
         ],
-        title: 'Реставрации салона',
+        title: 'Реставрация салона',
         module: 'Детейлинг',
         index: '5',
-        link: '/detailing/5/view' },
+        link: '/detailing/5/view',
+        slogan: "Слоган Реставрация салона",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
     ],
     mainLink: '/detailing'
   },
@@ -124,7 +136,10 @@ export const MENU_ITEMS = {
         title: 'Диагностика и ремонт',
         module: 'Услуги',
         index: '0',
-        link: '/services/0/view' },
+        link: '/services/0/view',
+        slogan: "Ничего лишнего — только точный результат",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/Slogans/diagnostika.jpg"
+      },
       { name: 'Программный чип тюнинг',
         description: 'Добавь мощности — открой потенциал своего автомобиля.\n\n' +
         'Профессиональный чип-тюнинг позволяет увеличить мощность и крутящий момент, снизить расход топлива и улучшить отклик на газ.\n\n' +
@@ -141,7 +156,10 @@ export const MENU_ITEMS = {
         title: 'Программный чип тюнинг',
         module: 'Услуги',
         index: '1',
-        link: '/services/1/view' },
+        link: '/services/1/view',
+        slogan: "Максимум мощности — без риска для мотора",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/Slogans/chip.png"
+      },
       { name: 'Русификация и дооснащение',
         description: 'Делаем твой авто удобным и функциональным — как должно быть с завода.\n\n' +
         'Переводим мультимедийные системы, приборные панели, навигацию и меню на русский язык. А также доустанавливаем любые функции, которых не было с завода.\n\n' +
@@ -157,7 +175,10 @@ export const MENU_ITEMS = {
         title: 'Русификация и дооснащение',
         module: 'Услуги',
         index: '2',
-        link: '/services/2/view' },
+        link: '/services/2/view',
+        slogan: 'Функциональность, комфорт и язык, который вам близок',
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/Slogans/russificatsiya.jpg"
+      },
       { name: 'Тюнинг автосвета',
         description: 'Видеть больше — ездить безопаснее.\n\n' +
         'Мы улучшаем светотехнику автомобиля, делая ее мощнее, ярче и современнее. Используем только проверенные решения и сертифицированное оборудование.\n\n' +
@@ -174,7 +195,10 @@ export const MENU_ITEMS = {
         title: 'Тюнинг автосвета',
         module: 'Услуги',
         index: '3',
-        link: '/services/3/view' },
+        link: '/services/3/view',
+        slogan: 'Совершенное освещение — для безупречного вождения',
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/Slogans/avtosvet.jpg"
+      },
     ],
     mainLink: '/services'
   },

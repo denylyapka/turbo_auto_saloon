@@ -34,11 +34,11 @@ export default ImageGallery;
 
 // Стили
 const SwiperContainer = styled.div`
-  max-width: 100vw;
+  max-width: 90vw;
   max-height: 400px;
 
   @media (min-width: 768px) {
-    max-width: calc(100vw - 280px);
+    max-width: calc(90vw - 280px);
   }
   margin: 0 auto;
   

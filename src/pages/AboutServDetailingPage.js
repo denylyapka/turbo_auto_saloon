@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ServiceDescription from 'components/TextFields/HeadPar';
 
 import ImageGallery from 'components/Gallery/GallerySwiper';
+import HeaderServiceIT from 'components/Headers/HeaderServiceImageText';
 
 import { BookButtonWithModal } from 'components/Buttons/ServiceButton';
 import { useParams } from 'react-router-dom';
@@ -38,13 +39,19 @@ const ServicePageTemplate = ({ service_data }) => {
   return (
     <PageContainer>
       <ContentWrapper>
-        <ImageGallery images={service_data.images} />
+        <HeaderServiceIT 
+          imageUrl={service_data.sloganImageUrl} 
+          slogan={service_data.slogan}
+          nameService={service_data.title}
+        />
+
         <ServiceDescription 
           nameModule={service_data.module}
           nameService={service_data.title}
           description={service_data.description}
           idService={id}
         />
+        <ImageGallery images={service_data.images} />
         <ButtonContainer>
           <BookButtonWithModal />
         </ButtonContainer>
