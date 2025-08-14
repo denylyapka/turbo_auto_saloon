@@ -3,9 +3,9 @@ export const SITE_CONSTANTS = {
   contacts: {
     phone: '+7 (916) 733-00-00',
     formattedPhone: '+79167330000',
-    email: '111@88866.ru',
-    address: 'г. Москва, ул. Примерная, д. 10, офис 25',
-    workingHours: 'Пн-Пт: 9:00 - 18:00',
+    email: 'turbotuningbiz888@gmail.com',
+    address: 'г. Москва, ул. Автозаводская, д. 24с1',
+    workingHours: 'Каждый день: 10:00 - 20:00',
   },
 
   // Социальные сети
