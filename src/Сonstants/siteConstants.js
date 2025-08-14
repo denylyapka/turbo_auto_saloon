@@ -3,7 +3,7 @@ export const SITE_CONSTANTS = {
   contacts: {
     phone: '+7 (916) 733-00-00',
     formattedPhone: '+79167330000',
-    email: 'info@example.com',
+    email: '111@88866.ru',
     address: 'г. Москва, ул. Примерная, д. 10, офис 25',
     workingHours: 'Пн-Пт: 9:00 - 18:00',
   },
