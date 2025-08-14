@@ -43,15 +43,15 @@ const Footer = () => {
         <FooterColumn>
           <ColumnTitle>Социальные сети</ColumnTitle>
           <SocialIcons>
-            <SocialIcon href={SITE_CONSTANTS.socialLinks.youtube} aria-label="YouTube">
+            {/* <SocialIcon href={SITE_CONSTANTS.socialLinks.youtube} aria-label="YouTube">
               <SvgIconsFooter iconName="youtube" />
-            </SocialIcon>
+            </SocialIcon> */}
             <SocialIcon href={SITE_CONSTANTS.socialLinks.telegram} aria-label="Telegram">
               <SvgIconsFooter iconName="telegram" />
             </SocialIcon>
-            <SocialIcon href={SITE_CONSTANTS.socialLinks.instagram} aria-label="Instagram">
+            {/* <SocialIcon href={SITE_CONSTANTS.socialLinks.instagram} aria-label="Instagram">
               <SvgIconsFooter iconName="instagram" />
-            </SocialIcon>
+            </SocialIcon> */}
           </SocialIcons>
         </FooterColumn>
       </FooterColumns>

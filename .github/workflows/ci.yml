@@ -28,6 +28,6 @@ jobs:
           cd /home/turbo-shop_frontend
           git fetch origin frontend_shop
           git reset --hard origin/frontend_shop
-          docker ps -q | xargs -r docker kill
+          docker compose stop
           docker compose up --build -d
         EOF
