@@ -29,6 +29,5 @@ jobs:
           git fetch origin frontend_shop
           git reset --hard origin/frontend_shop
           docker ps -q | xargs -r docker kill
-          docker buildx build --platform linux/amd64 -t my-react-app --load .
-          docker run -p 3000:3000 -d my-react-app
+          docker compose up --build -d
         EOF
