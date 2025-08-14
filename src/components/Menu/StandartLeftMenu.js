@@ -115,7 +115,7 @@ const StandartLeftMenu = ({ iconName, onClose }) => {
       </MenuList>
 
       <BottomSection>
-        <PhoneNumber>{SITE_CONSTANTS.contacts.phone}</PhoneNumber>
+        <PhoneNumber onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}>{SITE_CONSTANTS.contacts.phone}</PhoneNumber>
         <SocialIconsContainer>
           <SVGButtons 
             svg={<SvgIconsFooter iconName={"youtube"} />} 

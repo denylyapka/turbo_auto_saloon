@@ -34,7 +34,7 @@ const Footer = () => {
         <FooterColumn>
           <ColumnTitle>Контакты</ColumnTitle>
           <ContactList>
-            <ContactItem>{SITE_CONSTANTS.contacts.phone}</ContactItem>
+            <ContactItem onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}>{SITE_CONSTANTS.contacts.phone}</ContactItem>
             <ContactItem>{SITE_CONSTANTS.contacts.email}</ContactItem>
           </ContactList>
         </FooterColumn>

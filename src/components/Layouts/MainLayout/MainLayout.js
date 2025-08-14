@@ -13,6 +13,7 @@ import {
   IconsContainer, BackButton,
   MenuListContainer, MenuListsWrapper
 } from './MainLayoutStyles';
+import SITE_CONSTANTS from 'Сonstants/siteConstants';
 
 
 // Абстрактный компонент для списка
@@ -140,7 +141,7 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
             </NavContainer>
 
             <IconsContainer $isMobile={isMobile}>
-              <SvgIconsHeader iconName="call" size="20"/>          
+              <SvgIconsHeader iconName="call" size="20" onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}/>          
               <SvgIconsHeader iconName="user" size="26"/>
               <SvgIconsHeader iconName="map-pin" size="20"/>
             </IconsContainer>

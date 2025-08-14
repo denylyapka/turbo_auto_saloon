@@ -20,7 +20,7 @@ export const MENU_ITEMS = {
         module: 'Детейлинг',
         index: '0',
         link: '/detailing/0/view',
-        slogan: "Эстетика и защита в каждой линии",
+        slogan: "Глубокий блеск и безупречная гладкость поверхности",
         sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
       { name: 'Оклейка пленкой',
         description:
@@ -58,8 +58,8 @@ export const MENU_ITEMS = {
         module: 'Детейлинг',
         index: '2',
         link: '/detailing/2/view',
-        slogan: "Слоган PDR выпрямление вмятин",
-        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
+        slogan: "Идеальная форма — без следов ремонта",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/pdr.jpg" },
       { name: 'Локальная окраска',
         description: 'Восстанавливаем повреждённые участки кузова без полной перекраски детали. Подбираем цвет с точностью до оттенка, сохраняя заводской вид автомобиля.\n\n' +
         'Что мы предлагаем:\n' +
@@ -77,8 +77,8 @@ export const MENU_ITEMS = {
         module: 'Детейлинг',
         index: '3',
         link: '/detailing/3/view',
-        slogan: "Слоган Локальная окраска",
-        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
+        slogan: "Абсолютное совпадение цвета и фактуры",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/okraska.jpg" },
       { name: 'Химчистка',
         description: 'Комплексная химчистка возвращает интерьеру свежий вид и устраняет неприятные запахи. Используем безопасные составы, которые не вредят тканям, коже и пластику.\n\n' +
         'Что мы предлагаем:\n' +
@@ -113,8 +113,8 @@ export const MENU_ITEMS = {
         module: 'Детейлинг',
         index: '5',
         link: '/detailing/5/view',
-        slogan: "Слоган Реставрация салона",
-        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/polirovka.jpg" },
+        slogan: "Второе дыхание — премиальный результат",
+        sloganImageUrl: "https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Detailng/Slogans/restavratsiya.jpg" },
     ],
     mainLink: '/detailing'
   },
