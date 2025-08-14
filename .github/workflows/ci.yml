@@ -16,7 +16,6 @@ jobs:
       uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
     - name: Test SSH connection
       run: |
         ssh -v -o StrictHostKeyChecking=no \
@@ -29,7 +28,7 @@ jobs:
           cd /home/turbo-shop_frontend
           git fetch origin frontend_shop
           git reset --hard origin/frontend_shop
-          docker compose down
-          docker compose build
-          docker compose up -d
+          docker ps -q | xargs -r docker kill
+          docker buildx build --platform linux/amd64 -t my-react-app --load .
+          docker run -p 3000:3000 -d my-react-app
         EOF
