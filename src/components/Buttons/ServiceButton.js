@@ -26,7 +26,7 @@ const StyledBookButton = styled.button`
   }
 `;
 
-export const BookButtonWithModal = ( moduleService, nameService ) => {
+export const BookButtonWithModal = ({ moduleService, nameService }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBookClick = () => {
