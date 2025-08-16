@@ -29,9 +29,14 @@ const StyledBookButton = styled.button`
 export const BookButtonWithModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleBookClick = () => {
+    console.log(1); // Выводим 1 в консоль
+    window.location.href=`https://t.me/TS_turbo?=Привет,%20я%20хочу%20записаться%20на%20услугу%20в%20Turbo%20Service.`
+  };
+
   return (
     <>
-      <StyledBookButton onClick={() => setIsModalOpen(true)}>
+      <StyledBookButton onClick={handleBookClick}>
         Записаться на услугу
       </StyledBookButton>
 
