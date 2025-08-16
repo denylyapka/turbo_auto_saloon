@@ -31,7 +31,17 @@ export const BookButtonWithModal = () => {
 
   const handleBookClick = () => {
     console.log(1); // Выводим 1 в консоль
-    window.location.href=`https://t.me/TS_turbo?=Привет,%20я%20хочу%20записаться%20на%20услугу%20в%20Turbo%20Service.`
+    function encodeRussianToPercent(text) {
+      return encodeURIComponent(text)
+        .replace(/'/g, "%27")
+        .replace(/!/g, "%21");
+    }
+
+    // Пример использования:
+    const russianText = "Привет, хочу записаться на услугу!";
+    const encoded = encodeRussianToPercent(russianText);
+    console.log(encoded); 
+    window.location.href=`https://t.me/TS_turbo?=${encoded}`
   };
 
   return (
