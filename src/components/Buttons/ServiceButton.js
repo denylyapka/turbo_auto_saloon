@@ -41,7 +41,7 @@ export const BookButtonWithModal = () => {
     const russianText = "Привет, хочу записаться на услугу!";
     const encoded = encodeRussianToPercent(russianText);
     console.log(encoded); 
-    // window.location.href=`https://t.me/TS_turbo?=${encoded}`
+    window.location.href=`https://t.me/TS_turbo?text=${encoded}`
   };
 
   return (
