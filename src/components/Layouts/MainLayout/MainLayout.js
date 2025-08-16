@@ -138,7 +138,7 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
             </NavContainer>
 
             <IconsContainer $isMobile={isMobile}>
-              <SvgIconsHeader iconName="call" size="16" onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}/>          
+              <SvgIconsHeader iconName="call" size="16"/>          
               <SvgIconsHeader iconName="user" size="22"/>
               <SvgIconsHeader iconName="map-pin" size="16" onClick={() => window.open(SITE_CONSTANTS.contacts.urlToAddress, '_blank')}/>
             </IconsContainer>
@@ -175,9 +175,9 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
             </MenuListsWrapper>
 
             <IconsContainer $isMobile={isMobile}>
-              <SvgIconsHeader iconName="call" size="20" onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}/>          
+              <SvgIconsHeader iconName="call" size="20"/>          
               <SvgIconsHeader iconName="user" size="26"/>
-              <SvgIconsHeader iconName="map-pin" size="20" onClick={() => window.open(SITE_CONSTANTS.contacts.urlToAddress, '_blank')}/>
+              <SvgIconsHeader iconName="map-pin" size="20"/>
             </IconsContainer>
           </>
         )}
