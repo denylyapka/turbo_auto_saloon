@@ -94,7 +94,7 @@ const ShopLeftMenu = ({ iconName, onClose }) => {
     <MenuContainer>
       <LogoContainer>
         <SVGButtons 
-          svg={<SvgIconsLogo iconName={"logo"} size={26} />} 
+          svg={<SvgIconsLogo iconName={"logo"} size={36} />} 
           link="/"
           title="Мы"
           className="social-button"
@@ -141,24 +141,24 @@ const ShopLeftMenu = ({ iconName, onClose }) => {
       <BottomSection>
         <PhoneNumber onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}>{SITE_CONSTANTS.contacts.phone}</PhoneNumber>
         <SocialIconsContainer>
-          <SVGButtons 
+          {/* <SVGButtons 
             svg={<SvgIconsFooter iconName={"youtube"} />} 
             link={SITE_CONSTANTS.socialLinks.youtube}
             title="Наш YouTube"
             className="social-button"
-          />
+          /> */}
           <SVGButtons 
             svg={<SvgIconsFooter iconName={"telegram"} />} 
             link={SITE_CONSTANTS.socialLinks.telegram}
             title="Наш Telegram"
             className="social-button"
           />
-          <SVGButtons 
+          {/* <SVGButtons 
             svg={<SvgIconsFooter iconName={"instagram"} />} 
             link={SITE_CONSTANTS.socialLinks.instagram}
             title="Наш Instagram"
             className="social-button"
-          />
+          /> */}
         </SocialIconsContainer>
       </BottomSection>
     </MenuContainer>

@@ -15,8 +15,6 @@ import {
 } from './MainLayoutStyles';
 import SITE_CONSTANTS from 'Сonstants/siteConstants';
 
-
-// Абстрактный компонент для списка
 const MenuList = ({ items, onItemClick, onBack, isVisible, position }) => {
   return (
     <MenuListContainer $isVisible={isVisible} $position={position}>
@@ -45,7 +43,7 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
   
   const mainNavItems = [
     { name: 'Детейлинг', category: 'detailing' },
-    { name: 'Услуги', category: 'services' },
+    { name: 'Сервис', category: 'services' },
     { name: 'Магазин', category: 'shop' },
     { name: 'Подбор авто', category: 'selection' }
   ];
@@ -65,7 +63,6 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
       return;
     }
 
-    // Проверяем, является ли категория подпунктом (содержит _)
     if (category.includes('_')) {
       const [mainCategory, index] = category.split('_');
       const item = MENU_ITEMS[mainCategory]?.items[parseInt(index)];
@@ -141,9 +138,9 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
             </NavContainer>
 
             <IconsContainer $isMobile={isMobile}>
-              <SvgIconsHeader iconName="call" size="20" onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}/>          
-              <SvgIconsHeader iconName="user" size="26"/>
-              <SvgIconsHeader iconName="map-pin" size="20"/>
+              <SvgIconsHeader iconName="call" size="16" onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}/>          
+              <SvgIconsHeader iconName="user" size="22"/>
+              <SvgIconsHeader iconName="map-pin" size="16" onClick={() => window.open(SITE_CONSTANTS.contacts.urlToAddress, '_blank')}/>
             </IconsContainer>
           </>
         ) : (
@@ -178,9 +175,9 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
             </MenuListsWrapper>
 
             <IconsContainer $isMobile={isMobile}>
-              <SvgIconsHeader iconName="call" size="20"/>          
+              <SvgIconsHeader iconName="call" size="20" onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}/>          
               <SvgIconsHeader iconName="user" size="26"/>
-              <SvgIconsHeader iconName="map-pin" size="20"/>
+              <SvgIconsHeader iconName="map-pin" size="20" onClick={() => window.open(SITE_CONSTANTS.contacts.urlToAddress, '_blank')}/>
             </IconsContainer>
           </>
         )}
@@ -189,6 +186,7 @@ const HeaderGradient = ({ isMobile, onSelectCategory, onHoverCategory, activeIte
       <ConstructionModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)}
+        category={modalCategory} // Передаем категорию в модальное окно
       />
     </>
   );

@@ -17,10 +17,26 @@ const menuItems = [
     subItems: MENU_ITEMS.detailing.items
   },
   {
-    title: "Услуги",
+    title: "Сервис",
     category: "services",
     subItems: MENU_ITEMS.services.items
   },
+  {
+    title: "Оплата",
+    category: "payInfo",
+    subItems: null
+  },
+  {
+    title: "Доставка",
+    category: "delivery",
+    subItems: null
+  },
+  {
+    title: "Возврат",
+    category: "return",
+    subItems: null
+  }
+
   // {
   //   title: "Магазин",
   //   category: "shop",
@@ -30,7 +46,7 @@ const menuItems = [
   //   title: "Подбор авто",
   //   category: "selection",
   //   subItems: null
-  // }
+  // },
 ];
 
 const StandartLeftMenu = ({ iconName, onClose }) => {
@@ -117,24 +133,24 @@ const StandartLeftMenu = ({ iconName, onClose }) => {
       <BottomSection>
         <PhoneNumber onClick={() => window.location.href = `tel:${SITE_CONSTANTS.contacts.phone}`}>{SITE_CONSTANTS.contacts.phone}</PhoneNumber>
         <SocialIconsContainer>
-          <SVGButtons 
+          {/* <SVGButtons 
             svg={<SvgIconsFooter iconName={"youtube"} />} 
             link={SITE_CONSTANTS.socialLinks.youtube}
             title="Наш YouTube"
             className="social-button"
-          />
+          /> */}
           <SVGButtons 
             svg={<SvgIconsFooter iconName={"telegram"} />} 
             link={SITE_CONSTANTS.socialLinks.telegram}
             title="Наш Telegram"
             className="social-button"
           />
-          <SVGButtons 
+          {/* <SVGButtons 
             svg={<SvgIconsFooter iconName={"instagram"} />} 
             link={SITE_CONSTANTS.socialLinks.instagram}
             title="Наш Instagram"
             className="social-button"
-          />
+          /> */}
         </SocialIconsContainer>
       </BottomSection>
     </MenuContainer>

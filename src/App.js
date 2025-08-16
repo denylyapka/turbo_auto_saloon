@@ -85,19 +85,19 @@ const App = () => {
 
           {/* Информационные страницы */}
           <Route path="/pay-info" element={
-            <ShopLayout>
+            <DefaultLayout>
               <InformationPage pageType="payment" />
-            </ShopLayout>
+            </DefaultLayout>
           } />
           <Route path="/delivery" element={
-            <ShopLayout>
+            <DefaultLayout>
               <InformationPage pageType="delivery" />
-            </ShopLayout>
+            </DefaultLayout>
           } />
           <Route path="/return" element={
-            <ShopLayout>
+            <DefaultLayout>
               <InformationPage pageType="returns" />
-            </ShopLayout>
+            </DefaultLayout>
           } />
         </Routes>
       </BrowserRouter>

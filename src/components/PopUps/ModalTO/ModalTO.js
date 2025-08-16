@@ -43,6 +43,7 @@ export const ConstructionModal = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+
   const handleAnimationEnd = () => {
     if (!isOpen) {
       setShouldRender(false);

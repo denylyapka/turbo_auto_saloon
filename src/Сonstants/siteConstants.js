@@ -5,6 +5,7 @@ export const SITE_CONSTANTS = {
     formattedPhone: '+79167330000',
     email: 'turbotuningbiz888@gmail.com',
     address: 'г. Москва, ул. Автозаводская, д. 24с1',
+    urlToAddress: 'https://yandex.ru/maps/-/CHtWaXIp',
     workingHours: 'Каждый день: 10:00 - 20:00',
   },
 

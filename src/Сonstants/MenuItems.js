@@ -134,7 +134,7 @@ export const MENU_ITEMS = {
           'https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/diagnostica%203.jpg',
         ],
         title: 'Диагностика и ремонт',
-        module: 'Услуги',
+        module: 'Сервис',
         index: '0',
         link: '/services/0/view',
         slogan: "Ничего лишнего — только точный результат",
@@ -154,7 +154,7 @@ export const MENU_ITEMS = {
           'https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/chip%20tuning%203.jpg',
         ],
         title: 'Программный чип тюнинг',
-        module: 'Услуги',
+        module: 'Сервис',
         index: '1',
         link: '/services/1/view',
         slogan: "Максимум мощности — без риска для мотора",
@@ -173,7 +173,7 @@ export const MENU_ITEMS = {
           'https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/russificatsiya%202.jpg',
         ],
         title: 'Русификация и дооснащение',
-        module: 'Услуги',
+        module: 'Сервис',
         index: '2',
         link: '/services/2/view',
         slogan: 'Функциональность, комфорт и язык, который вам близок',
@@ -193,7 +193,7 @@ export const MENU_ITEMS = {
           'https://76bc124c-fd15-4e7c-a17c-335e579ba1d7.selstorage.ru/Turbo/Services/avtosvet%203.jpg',
         ],
         title: 'Тюнинг автосвета',
-        module: 'Услуги',
+        module: 'Сервис',
         index: '3',
         link: '/services/3/view',
         slogan: 'Совершенное освещение — для безупречного вождения',
@@ -208,5 +208,14 @@ export const MENU_ITEMS = {
   // selection: {
   //   mainLink: '/selection'
   // }
+  payInfo: {
+    mainLink: '/pay-info'
+  },
+  delivery: {
+    mainLink: '/delivery'
+  },
+  return: {
+    mainLink: '/return'
+  }
 
 }

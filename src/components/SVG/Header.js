@@ -1,6 +1,31 @@
+import { ConstructionModal } from 'components/PopUps/ModalTO/ModalTO';
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import SITE_CONSTANTS from 'Сonstants/siteConstants';
+
 
 class SvgIconsHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false
+    };
+  }
+
+  handleMapPinClick = () => {
+    if (SITE_CONSTANTS?.contacts?.urlToAddress) {
+      window.open(SITE_CONSTANTS.contacts.urlToAddress, '_blank');
+    }
+  }
+
+  handleUserClick = () => {
+    this.setState({ isModalOpen: true });
+  }
+
+  handleCloseModal = () => {
+    this.setState({ isModalOpen: false });
+  }
+
   // Метод для отрисовки иконки телефона
   renderCallIcon = (color = 'white', size = 17) => {
     return (
@@ -19,46 +44,72 @@ class SvgIconsHeader extends Component {
   // Метод для отрисовки иконки пользователя
   renderUserIcon = (color = 'white', size = 22) => {
     return (
-      <svg width={size} height={size} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <SvgIcon 
+        width={size} 
+        height={size} 
+        viewBox="0 0 22 22" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg" 
+        onClick={this.handleUserClick}
+      >
         <path d="M11 0C12.4587 0 13.8576 0.579462 14.8891 1.61091C15.9205 2.64236 16.5 4.04131 16.5 5.5C16.5 6.95869 15.9205 8.35764 14.8891 9.38909C13.8576 10.4205 12.4587 11 11 11C9.54131 11 8.14236 10.4205 7.11091 9.38909C6.07946 8.35764 5.5 6.95869 5.5 5.5C5.5 4.04131 6.07946 2.64236 7.11091 1.61091C8.14236 0.579462 9.54131 0 11 0ZM11 13.75C17.0775 13.75 22 16.2113 22 19.25V22H0V19.25C0 16.2113 4.9225 13.75 11 13.75Z" fill={color}/>
-      </svg>
+      </SvgIcon>
     );
   }
 
   // Метод для отрисовки иконки карты
   renderMapPinIcon = (color = 'white', size = 15) => {
     return (
-      <svg width={size} height={size * 1.4} viewBox="0 0 15 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <SvgIcon 
+        width={size} 
+        height={size * 1.4} 
+        viewBox="0 0 15 21" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg" 
+        onClick={this.handleMapPinClick}
+      >
         <path d="M7.5 9.975C6.7896 9.975 6.10829 9.69844 5.60596 9.20615C5.10363 8.71387 4.82143 8.04619 4.82143 7.35C4.82143 6.65381 5.10363 5.98613 5.60596 5.49384C6.10829 5.00156 6.7896 4.725 7.5 4.725C8.2104 4.725 8.89171 5.00156 9.39404 5.49384C9.89637 5.98613 10.1786 6.65381 10.1786 7.35C10.1786 7.69472 10.1093 8.03606 9.97468 8.35454C9.84007 8.67302 9.64276 8.9624 9.39404 9.20615C9.14531 9.44991 8.85002 9.64326 8.52505 9.77518C8.20007 9.9071 7.85176 9.975 7.5 9.975ZM7.5 0C5.51088 0 3.60322 0.774373 2.1967 2.15277C0.790176 3.53116 0 5.40066 0 7.35C0 12.8625 7.5 21 7.5 21C7.5 21 15 12.8625 15 7.35C15 5.40066 14.2098 3.53116 12.8033 2.15277C11.3968 0.774373 9.48912 0 7.5 0Z" fill={color}/>
-      </svg>
+      </SvgIcon>
     );
   }
 
   // Метод для отрисовки иконки корзины
   renderCartIcon = (color = 'white', size = 15) => {
     return (
-      <svg width={size} height={size * 1.4} viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <SvgIcon 
+        width={size} 
+        height={size * 1.4} 
+        viewBox="0 0 20 22" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path d="M19.0909 5.5H15.2273V5.06C15.2273 2.266 12.8864 0 10 0C7.11364 0 4.77273 2.266 4.77273 5.06V5.5H0.909091C0.40625 5.5 0 5.89325 0 6.38V21.12C0 21.6068 0.40625 22 0.909091 22H19.0909C19.5938 22 20 21.6068 20 21.12V6.38C20 5.89325 19.5938 5.5 19.0909 5.5ZM13.1818 5.5H6.81818V5.06C6.81818 3.35775 8.24148 1.98 10 1.98C11.7585 1.98 13.1818 3.35775 13.1818 5.06V5.5Z" fill="white"/>
-      </svg>
+      </SvgIcon>
     );
   }
 
   render() {
     const { iconName, color, size } = this.props;
+    const { isModalOpen } = this.state;
 
-    switch(iconName) {
-      case 'call':
-        return this.renderCallIcon(color, size);
-      case 'user':
-        return this.renderUserIcon(color, size);
-      case 'map-pin':
-        return this.renderMapPinIcon(color, size);
-      case 'cart':
-        return this.renderCartIcon(color, size);
-      default:
-        return null;
-    }
+    return (
+      <>
+        {iconName === 'call' && this.renderCallIcon(color, size)}
+        {iconName === 'user' && this.renderUserIcon(color, size)}
+        {iconName === 'map-pin' && this.renderMapPinIcon(color, size)}
+        {iconName === 'cart' && this.renderCartIcon(color, size)}
+        
+        <ConstructionModal 
+          isOpen={isModalOpen} 
+          onClose={this.handleCloseModal} 
+        />
+      </>
+    );
   }
 }
+
+const SvgIcon = styled.svg`
+  cursor: pointer;
+`;
 
 export default SvgIconsHeader;

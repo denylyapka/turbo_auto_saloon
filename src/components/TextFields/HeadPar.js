@@ -9,7 +9,7 @@ const ServiceDescription = ({ nameModule, nameService, description, idService })
     // Проверяем название модуля и формируем соответствующий путь
     let path;
     
-    if (nameModule === 'Услуги') {
+    if (nameModule === 'Сервис') {
       path = '/services';
     } else if (nameModule === 'Детейлинг') {
       path = '/detailing';
@@ -69,31 +69,30 @@ const Breadcrumbs = styled.div`
 `;
 
 const CrumbLink = styled(Link)`
-  color: #fff;
+  color: #939393ff;
   text-decoration: none;
   transition: color 0.2s;
   cursor: pointer;
 
   &:hover {
-    color: #949494ff;
-    text-decoration: underline;
+    color: #fff;
   }
 `;
 
 const ModuleCrumb = styled.span`
-  color: #fff;
+  color: #939393ff;
   cursor: pointer;
   transition: color 0.2s;
 
   &:hover {
-    color: #6e6e6eff;
-    text-decoration: underline;
+    color: #fff;
   }
 `;
 
 const Separator = styled.span`
   margin: 0 5px;
   color: #999;
+  font-weight: 900;
 `;
 
 const CurrentCrumb = styled.span`

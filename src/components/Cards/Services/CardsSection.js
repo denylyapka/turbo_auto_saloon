@@ -6,7 +6,7 @@ const ServicesGrid = ({ services }) => {
 
   return (
     <div>
-      <ServicesHeader>Услуги</ServicesHeader>
+      <ServicesHeader>Сервис</ServicesHeader>
       <GridContainer>
         {services.map((service) => (
           <ServiceCard
@@ -26,7 +26,7 @@ const ServicesHeader = styled.h1`
   margin: 40px auto 10px auto;
   text-align: center;
   font-size: 2.5rem;
-  color: #000;
+  color: #ffffffff;
   padding-bottom: 10px;
   position: relative;
   font-weight: 500;

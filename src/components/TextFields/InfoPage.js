@@ -25,7 +25,7 @@ const Title = styled.h1`
   font-size: 28px;
   margin-bottom: 30px;
   text-align: left;
-  color: #222;
+  color: #ffffffff;
 `;
 
 const Section = styled.section`
@@ -45,7 +45,7 @@ const SectionTitle = styled.h2`
 
 const Paragraph = styled.p`
   margin-bottom: 15px;
-  color: #555;
+  color: #c2c2c2ff;
   font-size: 16px;
 `;
 
@@ -53,6 +53,7 @@ const List = styled.ul`
   margin: 15px 0;
   padding-left: 20px;
   list-style-type: none;
+  color: #a2a2a2ff;
 `;
 
 const ListItem = styled.li`
