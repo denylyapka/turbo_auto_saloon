@@ -26,7 +26,7 @@ const StyledBookButton = styled.button`
   }
 `;
 
-export const BookButtonWithModal = () => {
+export const BookButtonWithModal = ( moduleService, nameService ) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBookClick = () => {
@@ -38,7 +38,7 @@ export const BookButtonWithModal = () => {
     }
 
     // Пример использования:
-    const russianText = "Привет, хочу записаться на услугу!";
+    const russianText = `Привет, хочу записаться на услугу!\n\n${moduleService} - ${nameService}`;
     const encoded = encodeRussianToPercent(russianText);
     console.log(encoded); 
     window.location.href=`https://t.me/TS_turbo?text=${encoded}`

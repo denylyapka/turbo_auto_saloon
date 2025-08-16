@@ -52,7 +52,7 @@ const ServicePageTemplate = ({ service_data }) => {
         />
         <ImageGallery images={service_data.images} />
         <ButtonContainer>
-          <BookButtonWithModal />
+          <BookButtonWithModal moduleService={service_data.module} nameService={service_data.title} />
         </ButtonContainer>
       </ContentWrapper>
     </PageContainer>
