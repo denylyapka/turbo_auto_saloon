@@ -4,4 +4,5 @@ from app.models.dbModels import Base
 
 
 def init_db(db: Session = None):
-    Base.metadata.create_all(bind=engine)
+    # Создаём таблицы (если их ещё нет)
+    Base.metadata.create_all(engine)

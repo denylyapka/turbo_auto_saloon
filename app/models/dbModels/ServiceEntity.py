@@ -1,9 +1,11 @@
 from sqlalchemy import Column, Integer, String, Text, Float, ARRAY
-from .base import Base
+
+from .Base import Base
 
 
 class ServiceEntity(Base):
     __tablename__ = "services"
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100))
     short_description = Column(Text)
@@ -11,3 +13,10 @@ class ServiceEntity(Base):
     price = Column(Float)
     time_action = Column(Integer)
     photos = Column(ARRAY(String))
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

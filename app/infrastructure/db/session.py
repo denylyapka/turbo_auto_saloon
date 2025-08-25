@@ -1,12 +1,24 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker
 from app.infrastructure.core.config import settings
 
-engine = create_engine(settings.DATABASE_URL)
-SessionLocal = scoped_session(sessionmaker(
-    autocommit=False, autoflush=False, bind=engine))
+# Создание движка
+engine = create_engine(
+    settings.DATABASE_URL,
+    echo=False,  # можно включить True для логов SQL
+    future=True  # новый API SQLAlchemy 2.0
+)
+
+# Фабрика сессий
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine,
+    future=True
+)
 
 
+# Зависимость для FastAPI / общего использования
 def get_db():
     db = SessionLocal()
     try:
