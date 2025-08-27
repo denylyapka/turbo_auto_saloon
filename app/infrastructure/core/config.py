@@ -1,11 +1,68 @@
-import os
+from enum import Enum
+from typing import Any
+
+from environs import Env
+from pydantic import PostgresDsn, field_validator
+from pydantic_core.core_schema import FieldValidationInfo
+from pydantic_settings import BaseSettings
+
+env = Env()
+env.read_env()
 
 
-class Settings:
-    DATABASE_URL = os.getenv(
-        "DATABASE_URL",
-        "postgresql://my_database:Xx123321@localhost:5432/my_database_db"
-    )
+class ModeEnum(str, Enum):
+    development = "development"
+    production = "production"
+    testing = "testing"
+
+
+class Settings(BaseSettings):
+    DATABASE_USER: str = "postgres"
+    DATABASE_PASSWORD: str = "your_password"  # Замени на реальный
+    DATABASE_HOST: str = "127.0.0.1"
+    DATABASE_PORT: int = 5432
+    DATABASE_NAME: str = "turbo_auto_saloon_db"  # Имя твоей БД
+
+    ASYNC_DATABASE_URI: PostgresDsn | None = None
+
+    @field_validator("ASYNC_DATABASE_URI", mode="after")
+    def assemble_db_connection(cls, v: str | None, info: FieldValidationInfo) -> Any:
+        if not v:
+            return PostgresDsn.build(
+                scheme="postgresql+asyncpg",
+                username=info.data["DATABASE_USER"],
+                password=info.data["DATABASE_PASSWORD"],
+                host=info.data["DATABASE_HOST"],
+                port=info.data["DATABASE_PORT"],
+                path=f'/{info.data["DATABASE_NAME"]}',
+            )
+        return v
 
 
 settings = Settings()
+
+
+class TestSettings(BaseSettings):
+    DATABASE_USER: str = "postgres"
+    DATABASE_PASSWORD: str = "your_password"  # Замени
+    DATABASE_HOST: str = "127.0.0.1"
+    DATABASE_PORT: int = 5432
+    DATABASE_NAME: str = "turbo_auto_saloon_db_test"  # Для тестов
+
+    ASYNC_DATABASE_URI: PostgresDsn | None = None
+
+    @field_validator("ASYNC_DATABASE_URI", mode="after")
+    def assemble_db_connection(cls, v: str | None, info: FieldValidationInfo) -> Any:
+        if not v:
+            return PostgresDsn.build(
+                scheme="postgresql+asyncpg",
+                username=info.data["DATABASE_USER"],
+                password=info.data["DATABASE_PASSWORD"],
+                host=info.data["DATABASE_HOST"],
+                port=info.data["DATABASE_PORT"],
+                path=f'/{info.data["DATABASE_NAME"]}',
+            )
+        return v
+
+
+test_settings = TestSettings()
