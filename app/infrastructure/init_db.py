@@ -1,8 +1,8 @@
-from sqlalchemy.orm import Session
 from app.infrastructure.db.session import engine
-from app.models.dbModels import Base
+
+from app.models.dbModels import Base  # Base из dbModels для всех моделей.
 
 
-def init_db(db: Session = None):
-    # Создаём таблицы (если их ещё нет)
-    Base.metadata.create_all(engine)
+def init_db():
+    # Создает все таблицы в БД на основе моделей (Base.metadata — мета-данные таблиц).
+    Base.metadata.create_all(bind=engine)

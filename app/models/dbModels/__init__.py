@@ -1,11 +1,18 @@
-from .Base import Base
+# Импорты всех моделей для удобства.
 
-from .ServiceEntity import ServiceEntity
+from .base import Base
 
-from .CompanyEntity import CompanyEntity
 
-from .CategoryEntity import CategoryEntity
+from .Categories.CategoryEntity import CategoryEntity
 
-from .ServiceCompanyEntity import ServiceCompanyEntity
+from .Categories.CategoryHierarchyEntity import CategoryHierarchyEntity
 
-from .CategoryHierarchyEntity import CategoryHierarchyEntity
+from .Companies.CompanyEntity import CompanyEntity
+
+from .Services.ServiceEntity import ServiceEntity
+
+from .Services.ServiceCompanyEntity import ServiceCompanyEntity
+
+from .CategoryHierarchies.Entities.CategoryHierarchyEntity import CategoryHierarchyEntity
+
+from .ServiceCompanies.Entities.ServiceCompanyEntity import ServiceCompanyEntity

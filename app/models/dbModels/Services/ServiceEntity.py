@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, Float, ARRAY
 
-from .Base import Base
+from app.models.dbModels.base import Base
 
 
 class ServiceEntity(Base):
@@ -10,9 +10,9 @@ class ServiceEntity(Base):
     name = Column(String(100))
     short_description = Column(Text)
     description = Column(Text)
-    price = Column(Float)
+    price = Column(Float)  # Float для цен с десятичными.
     time_action = Column(Integer)
-    photos = Column(ARRAY(String))
+    photos = Column(ARRAY(String))  # Массив URL фото.
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():

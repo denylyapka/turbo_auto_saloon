@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, ForeignKey
 
-from .Base import Base
+from app.models.dbModels.base import Base
 
 
 class ServiceCompanyEntity(Base):

@@ -1,6 +1,5 @@
-from sqlalchemy.orm import DeclarativeBase
+# Импорт для создания Base.
+from sqlalchemy.ext.declarative import declarative_base
 
-
-class Base(DeclarativeBase):
-    """Базовый класс для всех моделей"""
-    pass
+# Создаём Base — все модели наследуются от него, чтобы SQLAlchemy знал, что это таблицы БД. Это фундамент для всех таблиц.
+Base = declarative_base()
